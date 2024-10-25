@@ -13,6 +13,8 @@
 
 
 ## Tiivistelmä teksteistä "Karvinen 2023: Run Salt Command Locally" ja "Karvinen 2018: Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux" 
+Run Salt Command Locally:
+
 - Salt ja sen toiminnot samanlaisia Windows- ja Linux-koneilla
 - Tärkeimmät funktiot on pkg, file, service, user ja cmd.
 - Asennus alkaa orjan asentamisella, se tapahtuu komennolla
@@ -26,4 +28,9 @@
   - service: demonien, eli taustalla toimivien prosessien, hallintaa
   - user: käyttäjien hallintaa
   - cmd: komennon antaminen siten, että se toimii heti
+  - Ohjeet saa esiin komennolla
+  -         $ sudo salt-call --local sys.state_doc
 
+
+Salt Stack Master and Slave on Ubuntu Linux:
+- 
