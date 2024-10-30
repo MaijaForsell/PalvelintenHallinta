@@ -19,8 +19,6 @@ Run Salt Command Locally:
 - Tärkeimmät funktiot on pkg, file, service, user ja cmd.
 - Asennus alkaa orjan asentamisella, se tapahtuu komennolla  
         `$ sudo apt-get -y install salt-minion`
-- Asennus alkaa orjan asentamisella, se tapahtuu komennolla  
-  `$ sudo apt-get -y install salt-minion`
 - Komennot alkavat aina "sudo salt-call", eli "soittaminen"
 - Komennot
   - pkg: pakettien asentamista ja poistamista
