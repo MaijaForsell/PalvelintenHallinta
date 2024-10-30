@@ -74,6 +74,8 @@ Tämän jälkeen pääsin asentamaan itse salt-minionia
 c)
 Tässä käytin esimerkkinä "Run Salt Command Locally" -sivulta löytyviä komentoja.  
 
+PKG:
+
 
 $ sudo salt-call --local -l info state.single pkg.installed tree
 ![image](https://github.com/user-attachments/assets/1b451e6a-3bd8-4fed-8839-b2b9ee9e4376)
@@ -83,6 +85,8 @@ $ sudo salt-call --local -l info state.single pkg.installed tree
 pkg-tilafunktio on siis pakettien hallintaa. Tässä näkyy, että paketti "tree" on nyt asennettu ja se kertoo muutokset. Kuvassa näkyy, että se onnistui ja, että tämä oli muutos. Jos annan saman komennon uudestaan, se kertoo ettei muutoksia ole lainkaan (changed=0). 
 
 
+FILE:
+
 
 $ sudo salt-call --local -l info state.single file.managed /tmp/tervehdys
 ![image](https://github.com/user-attachments/assets/a89dca55-161f-40f4-8f97-49d60dd0a596) 
@@ -90,9 +94,8 @@ $ sudo salt-call --local -l info state.single file.managed /tmp/tervehdys
 files on tiedostojen hallintaa. Tässä komennossa loin uuden tiedoston, jonka nimi on "tervehdys". Se on tyhjä, mutta esimerkin vuoksi annan sen olla näin. 
 
 
+SERVICE:
 
-
-  
 
 $ sudo salt-call --local -l info state.single service.running apache2 enable=True
 ![image](https://github.com/user-attachments/assets/f3de5a83-9c59-4ba7-b602-8aa07e393e59)
@@ -106,8 +109,9 @@ service on demonien hallintaa. Tässä nähdään Apache-demonin olevan käynnis
 
 Tässä esimerkki epäonnistuneesta komennosta. Jos Apache ei ole asennettu, eli sitä ei edes voida käynnistää, se tuottaa tämän tuloksen.
 
+USER:
 
+$ sudo salt-call --local -l info state.single user.present maijaleena
+![image](https://github.com/user-attachments/assets/5e655bdb-27ab-417c-b3d8-518ba6cace5e)
 
-
-
-
+user on käyttäjien hallintaa. Tässä esimerkissä tietoja käyttäjästä maijaleena. Ja käyttäjä löytyy, käyttäjän tiedot on ajan tasalla.
