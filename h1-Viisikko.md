@@ -50,14 +50,64 @@ Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux:
   `master$ sudo salt-key -A`
 - Hyväksy halutut
 - Nyt voi antaa komentoja orjalle
-  
-##Asenna Debian 12-Bookworm
+  ## Asenna Debian 12-Bookworm
+
+
 a) Asentaminen sujui hyvin. Ainoa poikkeava asia verrattuna asentamisohjeisiin "Install Debian on Virtualbox - Updated 2024" oli se, että minun VirtualBox:ista ei löytynyt "Expert mode". Kuitenkin asentaminen sujui muuten ongelmitta. Kaikki toimi kuten kuuluu. Kokeilin asentaa VirtualBox:in uudestaan, mutta en silti asentamisvaiheessa löytänyt mitään vaihtoehtoa.
 
 b) 
-Yritin asentaa salt orjaa, mutta en kyennyt. Käytin komentoa "$ sudo apt-get -y install salt-minion", mutta komentorivi kertoi ettei se löydä pakettia.
+Yritin asentaa salt orjaa käyttäen apuna jo aikaisemmin mainittua "Run Salt Locally", mutta en kyennyt. Käytin komentoa "$ sudo apt-get -y install salt-minion", mutta komentorivi kertoi ettei se löydä pakettia.
+
+
 ![image](https://github.com/user-attachments/assets/13ebc5f5-8fea-41da-9f46-55b2f0e6ef9b)
 
-Kokeilin seuraavana etsiä, jos koko pakettia edes löytyy.
-![image](https://github.com/user-attachments/assets/8794bcf1-f21b-4131-9514-d3e7b0b833f7)
-Salt-minion olisi siellä, mutta miten sen saan käyttöön?
+
+Tässä vaiheessa etain netistä mikä voisi olla ongelma, kunnes palasin tehtävä-sivuille ja tajusin lukea huolellisesti koko sivun. Ja siellä vastaus olikin. Ohjeet Salt:in asentamiseen. Asensin repot, kuten sivuilla lukee.
+
+
+![image](https://github.com/user-attachments/assets/f433af42-9bfc-446a-b45c-1bceb847e9f3)
+
+
+Tämän jälkeen pääsin asentamaan itse salt-minionia
+
+
+c)
+Tässä käytin esimerkkinä "Run Salt Command Locally" -sivulta löytyviä komentoja.  
+
+
+$ sudo salt-call --local -l info state.single pkg.installed tree
+![image](https://github.com/user-attachments/assets/1b451e6a-3bd8-4fed-8839-b2b9ee9e4376)
+
+
+
+pkg-tilafunktio on siis pakettien hallintaa. Tässä näkyy, että paketti "tree" on nyt asennettu ja se kertoo muutokset. Kuvassa näkyy, että se onnistui ja, että tämä oli muutos. Jos annan saman komennon uudestaan, se kertoo ettei muutoksia ole lainkaan (changed=0). 
+
+
+
+$ sudo salt-call --local -l info state.single file.managed /tmp/tervehdys
+![image](https://github.com/user-attachments/assets/a89dca55-161f-40f4-8f97-49d60dd0a596) 
+
+files on tiedostojen hallintaa. Tässä komennossa loin uuden tiedoston, jonka nimi on "tervehdys". Se on tyhjä, mutta esimerkin vuoksi annan sen olla näin. 
+
+
+
+
+  
+
+$ sudo salt-call --local -l info state.single service.running apache2 enable=True
+![image](https://github.com/user-attachments/assets/f3de5a83-9c59-4ba7-b602-8aa07e393e59)
+
+
+service on demonien hallintaa. Tässä nähdään Apache-demonin olevan käynnissä jo, eli "service.running" ei muuttanut mitään.
+
+
+![image](https://github.com/user-attachments/assets/bf66f487-6fb0-4b0d-b8db-6d4b9c50b102)
+
+
+Tässä esimerkki epäonnistuneesta komennosta. Jos Apache ei ole asennettu, eli sitä ei edes voida käynnistää, se tuottaa tämän tuloksen.
+
+
+
+
+
+
