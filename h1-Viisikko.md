@@ -115,3 +115,68 @@ $ sudo salt-call --local -l info state.single user.present maijaleena
 ![image](https://github.com/user-attachments/assets/5e655bdb-27ab-417c-b3d8-518ba6cace5e)
 
 user on käyttäjien hallintaa. Tässä esimerkissä tietoja käyttäjästä maijaleena. Ja käyttäjä löytyy, käyttäjän tiedot on ajan tasalla.
+
+CMD:
+
+sudo salt-call --local -l info state.single cmd.run 'touch /tmp/foo' creates="/tmp/foo"
+![image](https://github.com/user-attachments/assets/8469648b-55d5-4ded-9625-c1465fb3a443)
+cmd antaa komennon, joka tehdään vain kerran. Usein käytetään vain testausmielessä, kuten scriptien kanssa. Tässä esimerkissä loin tiedoston "foo", mutta komennossa käsketään komennon tekevän sen vain, jos kyseistä tiedostoa ei ole jo olemassa.
+
+d)
+
+Idemponttius tarkoittaa, että saman komennon käyttäminen ei muuta tilaa jos sitä ei tarvoitse. Se estää bikatiloja hallitessa suurta määrää koneita. Se näkyy siinä, että kaikissa toistuvissa komennoissa kerrotaan onko muutoksia tullut (changed=0).
+
+
+Ensimmäinen kerta, kun käytin komentoa  
+
+                                $ sudo salt-call --local -l info state.single user.present testaaja
+
+![image](https://github.com/user-attachments/assets/6e4c376c-4e69-47ca-bb0b-e412c3627bea)
+
+
+Toinen kerta
+![image](https://github.com/user-attachments/assets/10003ff6-3750-46e8-84ba-13c879b599e1)
+
+
+Eli ensimmäisellä kerralla se luo käyttäjän "testaaja" ja toisella kerralla se vain kertoo sen olevan paikalla. Sama käy myös komennolla, jossa luodaan käyttäjästä absent "user.absent". Ensimmäisellä kerralla tila muuttuu ja toisella komentokerralla mikään ei muutu.
+
+
+e)
+
+Asensin koneelle myös herran. 
+
+Määritin localhostin herraksi orja-koneessa ja käynnistin molemmat.
+
+
+![image](https://github.com/user-attachments/assets/a9da136d-f5e3-472f-87ec-c4e52f64066b)
+
+
+Hyväksyin minionin avaimen
+
+
+![image](https://github.com/user-attachments/assets/587e2b6e-205b-495d-9091-4a75273ec9bb)
+
+
+![image](https://github.com/user-attachments/assets/f19e7148-6a4c-4de5-b9fa-1a6f7a3cb190)
+
+Orja-kone minioni vastaa kysymykseen
+
+
+![image](https://github.com/user-attachments/assets/221ecaf5-8ff9-4b3d-8ffb-fdfba77cc0d1)
+
+
+Hyvin tottelee!
+
+
+## Lähteet:
+https://terokarvinen.com/2018/03/28/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/
+
+https://terokarvinen.com/2021/salt-run-command-locally/
+
+https://terokarvinen.com/palvelinten-hallinta/#esitiedot
+
+https://docs.saltproject.io/salt/install-guide/en/latest/topics/configure-master-minion.html
+
+
+
+
