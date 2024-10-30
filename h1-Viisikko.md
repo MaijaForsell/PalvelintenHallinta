@@ -50,5 +50,14 @@ Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux:
   `master$ sudo salt-key -A`
 - Hyväksy halutut
 - Nyt voi antaa komentoja orjalle
+  
+##Asenna Debian 12-Bookworm
+a) Asentaminen sujui hyvin. Ainoa poikkeava asia verrattuna asentamisohjeisiin "Install Debian on Virtualbox - Updated 2024" oli se, että minun VirtualBox:ista ei löytynyt "Expert mode". Kuitenkin asentaminen sujui muuten ongelmitta. Kaikki toimi kuten kuuluu. Kokeilin asentaa VirtualBox:in uudestaan, mutta en silti asentamisvaiheessa löytänyt mitään vaihtoehtoa.
 
+b) 
+Yritin asentaa salt orjaa, mutta en kyennyt. Käytin komentoa "$ sudo apt-get -y install salt-minion", mutta komentorivi kertoi ettei se löydä pakettia.
+![image](https://github.com/user-attachments/assets/13ebc5f5-8fea-41da-9f46-55b2f0e6ef9b)
 
+Kokeilin seuraavana etsiä, jos koko pakettia edes löytyy.
+![image](https://github.com/user-attachments/assets/8794bcf1-f21b-4131-9514-d3e7b0b833f7)
+Salt-minion olisi siellä, mutta miten sen saan käyttöön?
