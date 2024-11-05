@@ -17,8 +17,11 @@ Run Salt Command Locally:
 
 - Salt ja sen toiminnot samanlaisia Windows- ja Linux-koneilla
 - Tärkeimmät funktiot on pkg, file, service, user ja cmd.
-- Asennus alkaa orjan asentamisella, se tapahtuu komennolla  
-        `$ sudo apt-get -y install salt-minion`
+- Asennus alkaa orjan asentamisella, se tapahtuu komennolla
+
+          $ sudo apt-get -y install salt-minion
+
+  
 - Komennot alkavat aina "sudo salt-call", eli "soittaminen"
 - Komennot
   - pkg: pakettien asentamista ja poistamista
@@ -26,8 +29,9 @@ Run Salt Command Locally:
   - service: demonien, eli taustalla toimivien prosessien, hallintaa
   - user: käyttäjien hallintaa
   - cmd: komennon antaminen siten, että se toimii heti
-- Ohjeet saa esiin komennolla  
-          `$ sudo salt-call --local sys.state_doc`
+- Ohjeet saa esiin komennolla
+
+                         $ sudo salt-call --local sys.state_doc
 
   
 
@@ -36,16 +40,25 @@ Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux:
 - Verkossa on yksi master, monta orjaa
 - Orjat voivat olla missä tahansa, masterilla pitää olla julkinen serveri ja osoite on tiedettävä
 - Jos palomuuri käytössä, master tarvitsee 4505/tcp ja 4506/tcp
-- Orjalle voi antaa nimen tai se tulee automaattisesti  
-  `slave$ sudoedit /etc/salt/minion`  
-  `master: xx.xx.xx (IP-osoite)`  
-  `id: nimi`
+- Orjalle voi antaa nimen tai se tulee automaattisesti
 
-- Uudelleenkäynnistä orja-demoni  
-  `slave$ sudo systemctl restart salt-minion.service`
+  
+                  slave$ sudoedit /etc/salt/minion
 
-- Orjan avaimen hyväksyminen  
-  `master$ sudo salt-key -A`
+   
+                  master: xx.xx.xx (IP-osoite)
+
+  
+                  id: nimi
+
+- Uudelleenkäynnistä orja-demoni
+  
+                                  slave$ sudo systemctl restart salt-minion.service
+
+- Orjan avaimen hyväksyminen
+
+
+                                  master$ sudo salt-key -A`
 - Hyväksy halutut
 - Nyt voi antaa komentoja orjalle
   ## Asenna Debian 12-Bookworm
