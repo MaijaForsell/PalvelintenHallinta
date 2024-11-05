@@ -1,7 +1,7 @@
 # Infra as code
 ## X)
 
-Two Machine Virtual Network With Debian 11 Bullseye and Vagrant:
+Two Machine Virtual Network With Debian 11 Bullseye and Vagrant (https://terokarvinen.com/2021/two-machine-virtual-network-with-debian-11-bullseye-and-vagrant/):
 
 - Nyt käytössä Debian 12-Bookworm
 - Vagrantin asennus Linuxilla helposti komenirivillä, Mac ja Windows ladataan ja asennetaan
@@ -22,7 +22,7 @@ Two Machine Virtual Network With Debian 11 Bullseye and Vagrant:
          $ vagrant destroy
 
 
-Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux: 
+Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux (https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/?fromSearch=salt%20quickstart%20salt%20stack%20master%20and%20slave%20on%20ubuntu%20linux): 
 
 Tein aiemmin tiivistelmän, tämä on aikaisemmasta työstäni "h1-Viisikko.md" (https://github.com/MaijaForsell/PalvelintenHallinta/edit/main/h1-Viisikko.md)
 
@@ -53,7 +53,7 @@ Tein aiemmin tiivistelmän, tämä on aikaisemmasta työstäni "h1-Viisikko.md" 
 - Nyt voi antaa komentoja orjalle
 
 
- Karvinen 2014: Hello Salt Infra-as-Code:
+ Karvinen 2014: Hello Salt Infra-as-Code (https://terokarvinen.com/2024/hello-salt-infra-as-code/):
 
 - Kaikki alkaa Salt:in asentamisella
 - Micro editor ladataan myös
@@ -82,12 +82,41 @@ Tein aiemmin tiivistelmän, tämä on aikaisemmasta työstäni "h1-Viisikko.md" 
 
 
 Karvinen 2023: Salt Vagrant - automatically provision one master and two slaves
-kohdat "Infra as Code - Your wishes as a text file" ja "top.sls - What Slave Runs What States":
+kohdat "Infra as Code - Your wishes as a text file" ja "top.sls - What Slave Runs What States" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file):
 
-- Mene init.sls sisälle tämä (YAML kanssa indentaatiolla on väliä, tässä kaksi välilyöntiä):
+- Luo "/srv/salt/hello" ja sinne "init.sls"
+- init.sls sisälle tämä (YAML kanssa indentaatiolla on väliä, tässä kaksi välilyöntiä):
 
                                         $ cat /srv/salt/hello/init.sls
                                         /tmp/infra-as-code:
                                           file.managed
 
                                         $ sudo salt '*' state.apply hello
+
+- Top.sls määrittää mitä tiloja orjat käyttävät:
+
+                                        $ sudo salt '*' state.apply hello^C
+                                        $ sudoedit /srv/salt/top.sls
+                                        $ cat /srv/salt/top.sls
+                                        base:
+                                          '*':
+                                            - hello
+
+- Nyt ei tarvitse erikseen nimetä moduleja:
+
+                                        $ sudo salt '*' state.apply
+
+
+Salt contributors: Salt overview, kohdat "Rules of YAML", "YAML simple structure" ja "Lists and dictionaries - YAML block structures" (https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml):
+
+- Python pohjalla
+- Data muodossa key: value
+- Tab ei käytössä, vain välilyönnit
+- Kommentit risuaidalla
+- Kolme peruselementtiä:
+  - Scalars: avain: arvo (arvo voi olla luku, merkkijono tai boolean)
+  - Listat: avain: arvot jokainen omalla rivillään, kaksi välilyöntiä ja viiva
+  - Sanakirjat: kokoelma "avain: arvo" listauksia
+- YAML käyttää lohkoja, eli sisennys määrittää kontekstin
+- Standardikäytäntö on kaksi välilyöntiä
+- Kokoelma, eli lista tai sanakirjan lohko, merkitsee jokaisen kohteen viivalla ja välilyönnillä ("- ").
