@@ -135,7 +135,7 @@ Käytin komentoa
 
 ![image](https://github.com/user-attachments/assets/e757ba04-40a0-4ff0-958a-be9326f2f004)
 
-### Linux-kone Vagrantissa
+### b) Linux-kone Vagrantissa
 
 Vagrant oli minulle uusi työkalu, joten tämä tehtävä oli puhdasta oppimista. Minulla meni 20 minuuttia ennen, kuin sain tehtyä minkäänlaista konetta. Lopulta sain parhaiten apua Antti Salmisen "h6"-sivulta (https://oispadotka.wordpress.com/2020/05/12/h6/).
 
@@ -153,6 +153,9 @@ Tässä kohdassa muokkasin siis notepadilla vagrantfilen sisällön lähteestä 
 ![image](https://github.com/user-attachments/assets/a80a8927-49cf-4e6b-bc79-38dcad0c8662)
 
 Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä. Toistin koneiden luonnin tehdäkseni seuraavia tehtäviä. 
+
+### c) Kaksin kaunihimpi
+
 
 
 
