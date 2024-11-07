@@ -1,5 +1,6 @@
 # Infra as code
-## X)
+## Tiivistelmät
+### X)
 
 Two Machine Virtual Network With Debian 11 Bullseye and Vagrant (https://terokarvinen.com/2021/two-machine-virtual-network-with-debian-11-bullseye-and-vagrant/):
 
@@ -120,3 +121,43 @@ Salt contributors: Salt overview, kohdat "Rules of YAML", "YAML simple structure
 - YAML käyttää lohkoja, eli sisennys määrittää kontekstin
 - Standardikäytäntö on kaksi välilyöntiä
 - Kokoelma, eli lista tai sanakirjan lohko, merkitsee jokaisen kohteen viivalla ja välilyönnillä ("- ").
+
+
+## Tehtävät
+Käytin tehtävien tekemiseen kannettavaa tietokonettani, mallia Lenovo Yoga Slim 6
+### a) Vagrant asennettu
+
+Tehtävään meni kokonaisuudessaan alle minuutti.
+
+Käytin komentoa
+
+                                        $ vagrant --version
+
+![image](https://github.com/user-attachments/assets/e757ba04-40a0-4ff0-958a-be9326f2f004)
+
+### Linux-kone Vagrantissa
+
+Vagrant oli minulle uusi työkalu, joten tämä tehtävä oli puhdasta oppimista. Minulla meni 20 minuuttia ennen, kuin sain tehtyä minkäänlaista konetta. Lopulta sain parhaiten apua Antti Salmisen "h6"-sivulta (https://oispadotka.wordpress.com/2020/05/12/h6/).
+
+Käyttämäni komennot olivat
+                                        $ mkdir firstmachine
+                                        $ cd firstmachine
+                                        $ vagrant init
+                                        $ notepad vagrantfile
+
+Tässä kohdassa muokkasin siis notepadilla vagrantfilen sisällön lähteestä "Karvinen 2021: Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin sen Bullseye:sta Bookworm:iin.
+![image](https://github.com/user-attachments/assets/a80a8927-49cf-4e6b-bc79-38dcad0c8662)
+
+Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä. Toistin koneiden luonnin tehdäkseni seuraavia tehtäviä. 
+
+
+
+
+
+
+
+
+## Lähteet:
+Karvinen, 2021: "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file)
+
+Salminen, 2020: "h6" (https://oispadotka.wordpress.com/2020/05/12/h6/)
