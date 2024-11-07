@@ -141,9 +141,13 @@ Vagrant oli minulle uusi työkalu, joten tämä tehtävä oli puhdasta oppimista
 
 Käyttämäni komennot olivat
                                         $ mkdir firstmachine
+                                        
                                         $ cd firstmachine
+                                        
                                         $ vagrant init
+                                        
                                         $ notepad vagrantfile
+                                        
 
 Tässä kohdassa muokkasin siis notepadilla vagrantfilen sisällön lähteestä "Karvinen 2021: Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin sen Bullseye:sta Bookworm:iin.
 ![image](https://github.com/user-attachments/assets/a80a8927-49cf-4e6b-bc79-38dcad0c8662)
