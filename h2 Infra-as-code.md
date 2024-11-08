@@ -265,6 +265,7 @@ Yhteys näiden välillä klo 12.28
 ### e) Hei infrakoodi!
 Aloitin tehtävän klo 20.04 ja lopetin
 
+Apunani käytin Karvinen: "Hello Salt Infra-as-Code"
 Käytin viimeksi tekemääni yhteyttä, jossa herra-kone on t001 ja minion-kone on t002. Ensimmäisenä otin ssh-yhteyden minion-koneeseen. Sen jälkeen loin uuden hakemiston testailua varten ja menin sinne.
                                         $ sudo mkdir -p /srv/salt/testing
                                         $ cd /srv/salt/testing
@@ -280,6 +281,12 @@ Sisällöksi laitoin:
                                           $ sudo salt-call --local state.apply testing
                                           
 ![image](https://github.com/user-attachments/assets/47c1c650-4beb-4b9b-898e-1c6667bed0f1)
+
+Kysyin koneelta onko tälläistä tiedostoa olemassa. Ja oli.
+
+![image](https://github.com/user-attachments/assets/99b12fe1-c919-40ec-826c-5eda494f3b68)
+
+
 
                                         
 
