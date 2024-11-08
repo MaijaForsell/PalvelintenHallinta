@@ -250,10 +250,16 @@ Halusin kokeilla tehdä tämän kaiken vielä kerran uudelleen, ihan vain todist
 
 192.168.88.101
 Annoin komennon "$ Vagrant up" klo 12.08
+
 Koneet olivat pystyssä klo 12.14
+
 Herra-kone toiminnassa klo 12.20
+
 Orja-kone (apuri2) toiminnassa 12.25
+
 Yhteys näiden välillä klo 12.28
+
+
 ![image](https://github.com/user-attachments/assets/cd82e81a-aeec-40b2-b80e-20a42f4b361c)
 
 
