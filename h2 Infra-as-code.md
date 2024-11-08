@@ -205,7 +205,7 @@ Tein kaiken samalla tavalla, kuin aikaisemmin, mutta tällä kertaa tiesin miten
                                         $ exit
                                         
 
-Nyt herra-kone toimi. Otin myös IP-osoitteen talteen, jotta sen käyttö seuraavassa osassa ei olisi ongelma. Seuraavana otin ssh-yhteyden t002-koneeseen. Nyt kiinnitin enemmän huomiota, jos vaikka saisin toimimaan.
+Nyt herra-kone toimi. Otin myös IP-osoitteen talteen, jotta sen käyttö seuraavassa osassa ei olisi ongelma. Sain kaksi vastausta, eli "10.0.2.15 192.168.88.101", lisäksi myös IPv6 osoitteen, mutta en tarvitse sitä nyt. Seuraavana otin ssh-yhteyden t002-koneeseen. Nyt kiinnitin enemmän huomiota, jos vaikka saisin toimimaan.
                                         
                                         $ vagrant ssh t002
                                         $ sudo apt install curl
@@ -213,12 +213,30 @@ Nyt herra-kone toimi. Otin myös IP-osoitteen talteen, jotta sen käyttö seuraa
                                         $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
                                         $ sudo apt-get update
                                         $ sudo apt-get install salt-minion
-Jipii! Nyt olen ylittänyt ongelmakohdan, johon eteneminen aiemmin tyssäsi. 
+Jipii! Nyt olen ylittänyt ongelmakohdan, johon eteneminen aiemmin tyssäsi. Seuraavana menin muokkaamaan orja-koneen tiedostoa.
+
+                                        $ sudoedit /etc/salt/minion
+                                        $ sudo systemctl restart salt-minion.service
+
+Nimesin koneeni "pikkuapuri", koska nimellä ei ole varsinaisesti mitään väliä. Master-kohtaan laitoin toisen saamistani t001 Ip-osoitteista. Kirjauduin ulos orja-koneesta ja otin ssh-yhteyden herra-koneeseen (t001).
+
+![image](https://github.com/user-attachments/assets/27e6ff65-80a4-48d7-9f82-9a51d6412b5a)
+
+                                        $ vagrant ssh t001
+Halusin hyväksyä pikkuapurin avaimen, mutta komento ei löytänyt pikkuapuria. Eli menin pikkuapuriin (t002) ja muokkasin fileen toisen IP-osoitteen. Ei siltikään toiminut. Kuitenkin pingaaminen toimii, eli koneiden pitäisi olla yhteydessä?
+![image](https://github.com/user-attachments/assets/c58fb2a6-9484-4caf-817b-3c92029f2c2c)
+
+
+
+
+                                        $ 
+
+
                                         
 
 
 
-                                        10.0.2.15 192.168.88.101
+                                        
                                         
                                         
 
