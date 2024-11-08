@@ -175,7 +175,9 @@ Ja taas poistohommiin
 
 ### d) Herra-orja verkossa
 
-Samalla vagrantfilellä, aloitan vain uudestaan koneet
+Tähän tehtävään meni minulta suunnilleen kolme tuntia, mutta siihen sisältyy paljon tutkimista ja kahvin keittämistä.
+
+Samalla vagrantfilellä, aloitan vain uudestaan koneet.
 
                                         $ vagrant up
 Päätin tehdä t001 herra-koneen ja t002 orja-koneen. Kokeilin ensin vain lisätä Salt-repot, mutta minulla ei ollut curl asennettuna. Eli asensin sen ja latasin ne repot.
@@ -228,9 +230,23 @@ Halusin hyväksyä pikkuapurin avaimen, mutta komento ei löytänyt pikkuapuria.
 
 Seuraavana kokeilin tuttua ja turvallista "oletko kokeillut laittaa sen pois päältä ja uudelleen päälle?". Menin herra-koneeseen ja katsoin onko demoni päällä. Ja sitten käynnistin sen. Sain vastauksen kysymällä ChatGPT:ltä "miten tietää onko salt-master käynnissä?"
                                         $ sudo systemctl status salt-master
-                                        $ sudo systemctl start salt-master
                                         
 ![image](https://github.com/user-attachments/assets/c95d8e0e-f0e0-4f98-9138-3da7e11e8207)
+
+No ei ollut käynnissä. Käynnistetään...
+
+                                        $ sudo systemctl start salt-master
+
+
+![image](https://github.com/user-attachments/assets/8121c3ac-2231-4fb7-872e-3a51a5b2888c)
+
+Ja siellä se on! Yhteys!
+
+Tässä koko tehtävän ja tutkimisen tulos:
+![image](https://github.com/user-attachments/assets/2a9e4814-7851-48bd-b0ca-2885ef9e118b)
+
+Halusin kokeilla tehdä tämän kaiken vielä kerran uudelleen, ihan vain todistaakseni itselleni ettei tämä ole niin vaikeaa. 
+
 
 
 
