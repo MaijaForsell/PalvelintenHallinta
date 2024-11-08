@@ -278,6 +278,7 @@ Sisällöksi laitoin:
   file.managed
 
   Annoin komennon toteuttaa kyseinen koodi.
+  
                                           $ sudo salt-call --local state.apply testing
                                           
 ![image](https://github.com/user-attachments/assets/47c1c650-4beb-4b9b-898e-1c6667bed0f1)
@@ -285,6 +286,9 @@ Sisällöksi laitoin:
 Kysyin koneelta onko tälläistä tiedostoa olemassa. Ja oli.
 
 ![image](https://github.com/user-attachments/assets/99b12fe1-c919-40ec-826c-5eda494f3b68)
+
+### f) Aja esimerkki sls-tiedostosi verkon yli orjalla.
+
 
 
 
