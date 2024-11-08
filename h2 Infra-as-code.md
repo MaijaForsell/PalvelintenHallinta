@@ -226,6 +226,14 @@ Nimesin koneeni "pikkuapuri", koska nimellä ei ole varsinaisesti mitään väli
 Halusin hyväksyä pikkuapurin avaimen, mutta komento ei löytänyt pikkuapuria. Eli menin pikkuapuriin (t002) ja muokkasin fileen toisen IP-osoitteen. Ei siltikään toiminut. Kuitenkin pingaaminen toimii, eli koneiden pitäisi olla yhteydessä?
 ![image](https://github.com/user-attachments/assets/c58fb2a6-9484-4caf-817b-3c92029f2c2c)
 
+Seuraavana kokeilin tuttua ja turvallista "oletko kokeillut laittaa sen pois päältä ja uudelleen päälle?". Menin herra-koneeseen ja katsoin onko demoni päällä. Ja sitten käynnistin sen. Sain vastauksen kysymällä ChatGPT:ltä "miten tietää onko salt-master käynnissä?"
+                                        $ sudo systemctl status salt-master
+                                        $ sudo systemctl start salt-master
+                                        
+![image](https://github.com/user-attachments/assets/c95d8e0e-f0e0-4f98-9138-3da7e11e8207)
+
+
+
 
 
 
