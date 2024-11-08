@@ -137,7 +137,7 @@ Käytin komentoa
 
 ### b) Linux-kone Vagrantissa
 
-Vagrant oli minulle uusi työkalu, joten tämä tehtävä oli puhdasta oppimista. Minulla meni 20 minuuttia ennen, kuin sain tehtyä minkäänlaista konetta. Lopulta sain parhaiten apua Antti Salmisen "h6"-sivulta (https://oispadotka.wordpress.com/2020/05/12/h6/).
+Vagrant oli minulle uusi työkalu, joten tämä tehtävä oli puhdasta oppimista. Minulla meni 20 minuuttia ennen, kuin sain tehtyä minkäänlaista konetta. Lopulta sain parhaiten apua Antti Salmisen "h6"-sivulta (https://oispadotka.wordpress.com/2020/05/12/h6/). Lopputehtävä meni noin 10 minuuttia.
 
 Käyttämäni komennot olivat
                                         $ mkdir firstmachine
@@ -152,9 +152,13 @@ Käyttämäni komennot olivat
 Tässä kohdassa muokkasin siis notepadilla vagrantfilen sisällön lähteestä "Karvinen 2021: Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin sen Bullseye:sta Bookworm:iin.
 ![image](https://github.com/user-attachments/assets/a80a8927-49cf-4e6b-bc79-38dcad0c8662)
 
-Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä. Toistin koneiden luonnin tehdäkseni seuraavia tehtäviä. 
+Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä.
 
 ### c) Kaksin kaunihimpi
+
+Seuraavaksi latasin samat koneet, kuin aikaisemmassa osiossa. Tällä kertaa kaikki meni sujuvammin, koska olin jo aiemmin ajanut samat komennot ja tiesin mitä tehdä. Menin VirtualBoxiin ja muokkasin sieltä yhteydet kuntoon, eli vaihdoin NAT-yhteydestä Bridged adapteriin. 
+![image](https://github.com/user-attachments/assets/82b8ad32-46fd-426f-aea0-57447c959a0d)
+
 
 
 
