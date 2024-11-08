@@ -248,7 +248,6 @@ Tässä koko tehtävän ja tutkimisen tulos:
 Halusin kokeilla tehdä tämän kaiken vielä kerran uudelleen, ihan vain todistaakseni itselleni ettei tämä ole niin vaikeaa. 
 
 
-192.168.88.101
 Annoin komennon "$ Vagrant up" klo 12.08
 
 Koneet olivat pystyssä klo 12.14
