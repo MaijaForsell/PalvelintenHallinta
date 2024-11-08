@@ -180,7 +180,7 @@ Tähän tehtävään meni minulta suunnilleen kolme tuntia, mutta siihen sisält
 Samalla vagrantfilellä, aloitan vain uudestaan koneet.
 
                                         $ vagrant up
-Päätin tehdä t001 herra-koneen ja t002 orja-koneen. Kokeilin ensin vain lisätä Salt-repot, mutta minulla ei ollut curl asennettuna. Eli asensin sen ja latasin ne repot.
+Päätin tehdä t001 herra-koneen ja t002 minion-koneen. Kokeilin ensin vain lisätä Salt-repot, mutta minulla ei ollut curl asennettuna. Eli asensin sen ja latasin ne repot.
                                         $ sudo apt install curl
                                         $ sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://repo.saltproject.io/salt/py3/debian/12/amd64/SALT-PROJECT-GPG-PUBKEY-2023.gpg
 
@@ -215,12 +215,12 @@ Nyt herra-kone toimi. Otin myös IP-osoitteen talteen, jotta sen käyttö seuraa
                                         $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
                                         $ sudo apt-get update
                                         $ sudo apt-get install salt-minion
-Jipii! Nyt olen ylittänyt ongelmakohdan, johon eteneminen aiemmin tyssäsi. Seuraavana menin muokkaamaan orja-koneen tiedostoa.
+Jipii! Nyt olen ylittänyt ongelmakohdan, johon eteneminen aiemmin tyssäsi. Seuraavana menin muokkaamaan minion-koneen tiedostoa.
 
                                         $ sudoedit /etc/salt/minion
                                         $ sudo systemctl restart salt-minion.service
 
-Nimesin koneeni "pikkuapuri", koska nimellä ei ole varsinaisesti mitään väliä. Master-kohtaan laitoin toisen saamistani t001 Ip-osoitteista. Kirjauduin ulos orja-koneesta ja otin ssh-yhteyden herra-koneeseen (t001).
+Nimesin koneeni "pikkuapuri", koska nimellä ei ole varsinaisesti mitään väliä. Master-kohtaan laitoin toisen saamistani t001 Ip-osoitteista. Kirjauduin ulos minion-koneesta ja otin ssh-yhteyden herra-koneeseen (t001).
 
 ![image](https://github.com/user-attachments/assets/27e6ff65-80a4-48d7-9f82-9a51d6412b5a)
 
@@ -254,7 +254,7 @@ Koneet olivat pystyssä klo 12.14
 
 Herra-kone toiminnassa klo 12.20
 
-Orja-kone (apuri2) toiminnassa 12.25
+Minion-kone (apuri2) toiminnassa 12.25
 
 Yhteys näiden välillä klo 12.28
 
@@ -262,7 +262,26 @@ Yhteys näiden välillä klo 12.28
 ![image](https://github.com/user-attachments/assets/cd82e81a-aeec-40b2-b80e-20a42f4b361c)
 
 
+### e) Hei infrakoodi!
+Aloitin tehtävän klo 20.04 ja lopetin
 
+Käytin viimeksi tekemääni yhteyttä, jossa herra-kone on t001 ja minion-kone on t002. Ensimmäisenä otin ssh-yhteyden minion-koneeseen. Sen jälkeen loin uuden hakemiston testailua varten ja menin sinne.
+                                        $ sudo mkdir -p /srv/salt/testing
+                                        $ cd /srv/salt/testing
+Seuraavaksi loin "init.sls"-tiedoston.
+
+                                        $ sudoedit init.sls
+Sisällöksi laitoin:
+
+/tmp/iltaa:
+  file.managed
+
+  Annoin komennon toteuttaa kyseinen koodi.
+                                          $ sudo salt-call --local state.apply testing
+                                          
+![image](https://github.com/user-attachments/assets/47c1c650-4beb-4b9b-898e-1c6667bed0f1)
+
+                                        
 
 
 
