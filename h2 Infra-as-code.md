@@ -152,12 +152,79 @@ Käyttämäni komennot olivat
 Tässä kohdassa muokkasin siis notepadilla vagrantfilen sisällön lähteestä "Karvinen 2021: Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin sen Bullseye:sta Bookworm:iin.
 ![image](https://github.com/user-attachments/assets/a80a8927-49cf-4e6b-bc79-38dcad0c8662)
 
-Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä.
+Tämän jälkeen näin koneet VirtualBoxissa. Poistin tietysti koneet heti sen jälkeen, jotta en ehtisi kiintyä. Jouduin myös poistamaan omalta koneeltani vagrantfilen erikseen
+                                        $ del vagrantfile
+                                        
 
 ### c) Kaksin kaunihimpi
 
-Seuraavaksi latasin samat koneet, kuin aikaisemmassa osiossa. Tällä kertaa kaikki meni sujuvammin, koska olin jo aiemmin ajanut samat komennot ja tiesin mitä tehdä. Menin VirtualBoxiin ja muokkasin sieltä yhteydet kuntoon, eli vaihdoin NAT-yhteydestä Bridged adapteriin. 
-![image](https://github.com/user-attachments/assets/82b8ad32-46fd-426f-aea0-57447c959a0d)
+Seuraavaksi latasin samat koneet, kuin aikaisemmassa osiossa. Tällä kertaa kaikki meni sujuvammin, koska olin jo aiemmin ajanut samat komennot ja tiesin mitä tehdä. Kuitenkin ongelmia nousi salt-latauksissa. Kaikkiaan tähän meni yli tunti, sillä jouduin tutkimaan Salt-sivuja. 
+
+Kirjauduin t001-koneelle ja pingasin t002-konetta.
+
+                                        $ vagrant ssh t001
+                                        vagrant@t001$ ping -c 1 192.168.88.102
+![image](https://github.com/user-attachments/assets/e28e3371-91ce-46ce-84f1-3f9052da7248)
+
+Tein saman myös t002-koneella ja pingasin t001-konetta.
+![image](https://github.com/user-attachments/assets/bdc1844f-5d18-400d-985b-ef1d907e0ce9)
+
+Ja taas poistohommiin
+                                        $ vagrant destroy
+
+
+### d) Herra-orja verkossa
+
+Samalla vagrantfilellä, aloitan vain uudestaan koneet
+
+                                        $ vagrant up
+Päätin tehdä t001 herra-koneen ja t002 orja-koneen. Kokeilin ensin vain lisätä Salt-repot, mutta minulla ei ollut curl asennettuna. Eli asensin sen ja latasin ne repot.
+                                        $ sudo apt install curl
+                                        $ sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://repo.saltproject.io/salt/py3/debian/12/amd64/SALT-PROJECT-GPG-PUBKEY-2023.gpg
+
+Sain kuitenkin vastauksksi "Could not resolve host: repo.saltproject.io". Kopioin tämän suoraan Google-hakuun ja sain selville Salt Projectin sivuilta, että he muuttivat repo-osoitteita juuri lokakuun lopussa. Se selittää miksi aikaisemman tehtävän teossa tuo komento toimi, mutta nyt ei. Laitoin siis uuden repo-osoitteen, jonka sain sivuilta. Selailin hiukan, että saisin tietää mikä on oikea. Näin siellä mainittuna DEB-packages, jotka ovat Debianille sopivat. Myös ohjeiden seuraavat käskyt näyttivät tutuilta, sillä  ne olivat muotoa "sudo apt-get...". Eli näillä mentiin. Pahimmassa tapauksessa joutuisin vain tuhoamaan vagrant-koneet ja yrittämään uudestaan.
+
+                                        $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+                                        $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+
+Näillä säätämisillä sain salt-masterin toimimaan! 
+                                        $ sudo apt-get -y install salt-master
+
+
+Seuraavaksi otin ssh-yhteyden t002-koneeseen ja latasin samat repot sinne. En kuitenkaan saanut selville miksi echo-käsky ei löytänyt konetta. En osannut korjata ongelmaa, joten päätin heittää koko koneen roskakoriin. Ylitseampuvaa, kenties, mutta toimivaa. Eli tuhosin koneet ja aloitin uudestaan.
+
+Tein kaiken samalla tavalla, kuin aikaisemmin, mutta tällä kertaa tiesin miten. Tässä käskyt, joita käytin päästäkseni ongelmakohtaan.
+
+                                        $ vagrant ssh t001
+                                        $ sudo apt install curl
+                                        $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+                                        $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+                                        $ sudo apt-get update
+                                        $ sudo apt-get -y install salt-master
+                                        $ hostname -I
+                                        $ exit
+                                        
+
+Nyt herra-kone toimi. Otin myös IP-osoitteen talteen, jotta sen käyttö seuraavassa osassa ei olisi ongelma. Seuraavana otin ssh-yhteyden t002-koneeseen. Nyt kiinnitin enemmän huomiota, jos vaikka saisin toimimaan.
+                                        
+                                        $ vagrant ssh t002
+                                        $ sudo apt install curl
+                                        $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+                                        $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+                                        $ sudo apt-get update
+                                        $ sudo apt-get install salt-minion
+Jipii! Nyt olen ylittänyt ongelmakohdan, johon eteneminen aiemmin tyssäsi. 
+                                        
+
+
+
+                                        10.0.2.15 192.168.88.101
+                                        
+                                        
+
+
+                                        
+
 
 
 
@@ -172,3 +239,5 @@ Seuraavaksi latasin samat koneet, kuin aikaisemmassa osiossa. Tällä kertaa kai
 Karvinen, 2021: "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file)
 
 Salminen, 2020: "h6" (https://oispadotka.wordpress.com/2020/05/12/h6/)
+
+
