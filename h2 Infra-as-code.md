@@ -290,7 +290,7 @@ Kysyin koneelta onko tälläistä tiedostoa olemassa. Ja oli.
 
 ### f) Aja esimerkki sls-tiedostosi verkon yli orjalla.
 
-Aloitin 13.35
+Tehtävään meni noin puoli tuntia. Käytin lähteenä Karvinen 2023: "Salt Vagrant - automatically provision one master and two slaves"
 
 Otin ssh-yhteyden herra-koneeseen. Loin hakemiston "overthenetwork" ja loin sinne sls-tiedoston, jolla luon tiedoston.
                                         $ sudo mkdir -p /srv/overthenetwork
@@ -316,7 +316,66 @@ Ja siellä se oli.
 ![image](https://github.com/user-attachments/assets/82c320b2-6953-40d3-a00f-7a1033823b86)
 
 
+### g) Tee sls-tiedosto, joka käyttää vähintään kahta eri tilafunktiota näistä: package, file, service, user.
+
+Käytin apuna Salt Project:in sivuilta löytyvää "Management of user accounts" (https://docs.saltproject.io/en/latest/ref/states/all/salt.states.user.html)
+
+14.05
+
+Otin ensimmäisenä ssh-yhteyden herra-koneeseen. Loin sinne hakemiston "writestuff" ja siihen hakemistoon tiedoston "userstuff.sls".
+
+
+                                        $ sudo mkdir -p /srv/salt/writestuff
                                         
+                                        $ sudoedit /srv/salt/writestuff/userstuff.sls
+
+Tässä kohdassa olin aivan hukassa siitä, miten syntaksia kirjoitetaan tai miten voin käyttää muita, kuin file.managed järkevästi. Päätin, että en tee mitään loogista, vaan lisään jotakin tavaraa sls-tiedostoon.
+
+userstuff.sls sisältö:
+
+
+create_user:
+  user.present:
+    - fullname: Test User
+    - shell: /bin/zsh
+    - home: /home/testuser
+
+create_file:
+  file.managed:
+    - name: /tmp/success
+
+  Kokeilin ajaa komennon. 
+                                          $
+
+Sain vain pitkän error-listan.
+![image](https://github.com/user-attachments/assets/5f1cec92-ad24-469f-b634-7c7facf1651c)
+
+Tajusin, että en ole antanut käyttäjälleni "nimeä", vain "fullname", joka ei ole sama asia. Katsoin myös Salt Project ohjeesta, että voin tehdä myös yksinkertaisemman käskyn. Muutin sls-tiedoston sisältöä:
+
+
+create_user:
+  user.present:
+    - name: testuser
+
+create_file:
+  file.managed:
+    - name: /tmp/success
+
+
+Taas error:
+Salt request timed out. The master is not responding. You may need to run your command with `--async` in order to bypass the congested event bus. With `--async`, the CLI tool will print the job id (jid) and exit immediately without listening for responses. You can then use `salt-run jobs.lookup_jid` to look up the results of the job in the job cache later.
+
+
+Tässä kohdassa turhauduin hiukan ja luin koko error-koodin huolella. Ilmeisesti herra-kone ei vastaa, joten kysyin onko salt-master demoni käynnissä. No ei ollut.
+
+
+![image](https://github.com/user-attachments/assets/4cdd8dac-2046-4fb0-a1aa-646cfb4d5f41)
+
+Pahasti vaikuttaa, että yritykseni tehdä itse YAML-koodia täysin väärällä syntaksilla teki jotakin. Aika tappaa koneet. En halua kokeilla korjata jotakin, jossa lukee isolla "failed" ja sana "kill". Hyvästi apuri2.
+
+
+
+
 
 
 
