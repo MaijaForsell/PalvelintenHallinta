@@ -263,7 +263,8 @@ Yhteys näiden välillä klo 12.28
 
 
 ### e) Hei infrakoodi!
-Aloitin tehtävän klo 20.04 ja lopetin
+
+Tehtävään meni noin viisitoista minuuttia.
 
 Apunani käytin Karvinen: "Hello Salt Infra-as-Code"
 Käytin viimeksi tekemääni yhteyttä, jossa herra-kone on t001 ja minion-kone on t002. Ensimmäisenä otin ssh-yhteyden minion-koneeseen. Sen jälkeen loin uuden hakemiston testailua varten ja menin sinne.
@@ -289,7 +290,27 @@ Kysyin koneelta onko tälläistä tiedostoa olemassa. Ja oli.
 
 ### f) Aja esimerkki sls-tiedostosi verkon yli orjalla.
 
-Otin ssh-yhteyden herra-koneeseen
+Aloitin 13.35
+
+Otin ssh-yhteyden herra-koneeseen. Loin hakemiston "overthenetwork" ja loin sinne sls-tiedoston, jolla luon tiedoston.
+                                        $ sudo mkdir -p /srv/overthenetwork
+                                        $ sudoedit /srv/salt/createfile.sls
+
+Tiedoston sisälle kirjoitin:
+
+
+createfile:
+  file.managed:
+    - name: /tmp/hello.txt
+
+Sitten annoin minionille käskyn.
+
+                                        $ sudo salt '*' state.apply createfile
+
+![image](https://github.com/user-attachments/assets/66670acc-8d5a-4716-b054-0191111b0aea)
+
+
+                                        
 
 
 
