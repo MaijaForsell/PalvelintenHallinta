@@ -29,9 +29,9 @@ Tein aiemmin tiivistelmän, tämä on aikaisemmasta työstäni "h1-Viisikko.md" 
 
 
 - Verkossa on yksi master, monta orjaa
-- Orjat voivat olla missä tahansa, masterilla pitää olla julkinen serveri ja osoite on tiedettävä
+- Minionit voivat olla missä tahansa, masterilla pitää olla julkinen serveri ja osoite on tiedettävä
 - Jos palomuuri käytössä, master tarvitsee 4505/tcp ja 4506/tcp
-- Orjalle voi antaa nimen tai se tulee automaattisesti
+- Minionille voi antaa nimen tai se tulee automaattisesti
 
   
                   slave$ sudoedit /etc/salt/minion
@@ -69,7 +69,7 @@ Tein aiemmin tiivistelmän, tämä on aikaisemmasta työstäni "h1-Viisikko.md" 
   
                                         $ sudo mkdir -p /srv/salt/hello/
 
-- "/srv/salt/" on tässä esimerkissä kansio, jonka kaikki orja-koneet näkevät ja "/hello" on module
+- "/srv/salt/" on tässä esimerkissä kansio, jonka kaikki minioni-koneet näkevät ja "/hello" on module
 - Seuraavana on mentävä hello-modulen sisään ja voi luoda "init.sls"-tiedoston. Jos micro ladattuna, sudoedit avaa sen.
 
                                         $ sudoedit init.sls
@@ -94,7 +94,7 @@ kohdat "Infra as Code - Your wishes as a text file" ja "top.sls - What Slave Run
 
                                         $ sudo salt '*' state.apply hello
 
-- Top.sls määrittää mitä tiloja orjat käyttävät:
+- Top.sls määrittää mitä tiloja minionit käyttävät:
 
                                         $ sudo salt '*' state.apply hello^C
                                         $ sudoedit /srv/salt/top.sls
@@ -288,6 +288,8 @@ Kysyin koneelta onko tälläistä tiedostoa olemassa. Ja oli.
 ![image](https://github.com/user-attachments/assets/99b12fe1-c919-40ec-826c-5eda494f3b68)
 
 ### f) Aja esimerkki sls-tiedostosi verkon yli orjalla.
+
+Otin ssh-yhteyden herra-koneeseen
 
 
 
