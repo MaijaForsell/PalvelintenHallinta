@@ -309,6 +309,12 @@ Sitten annoin minionille käskyn.
 
 ![image](https://github.com/user-attachments/assets/66670acc-8d5a-4716-b054-0191111b0aea)
 
+Seuraavaksi otin ssh-yhteyden minioniin, jotta voisin tarkistaa tuloksen.
+
+Ja siellä se oli.
+
+![image](https://github.com/user-attachments/assets/82c320b2-6953-40d3-a00f-7a1033823b86)
+
 
                                         
 
