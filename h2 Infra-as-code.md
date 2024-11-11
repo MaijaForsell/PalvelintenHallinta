@@ -371,7 +371,47 @@ Tässä kohdassa turhauduin hiukan ja luin koko error-koodin huolella. Ilmeisest
 
 ![image](https://github.com/user-attachments/assets/4cdd8dac-2046-4fb0-a1aa-646cfb4d5f41)
 
-Pahasti vaikuttaa, että yritykseni tehdä itse YAML-koodia täysin väärällä syntaksilla teki jotakin. Aika tappaa koneet. En halua kokeilla korjata jotakin, jossa lukee isolla "failed" ja sana "kill". Hyvästi apuri2.
+Pahasti vaikuttaa, että yritykseni tehdä itse YAML-koodia täysin väärällä syntaksilla teki jotakin. Aika aloittaa uudestaan. En halua kokeilla korjata jotakin, jossa lukee isolla "failed" ja sana "kill". Hyvästi apuri2.
+
+
+Tuhosin koneet ja loin uudet, kuten tehtävässä c). Loin saman nimisen hakemiston ja tiedoston, samalla sls-sisällöllä.
+
+create_user:
+  user.present:
+    - name: testuser
+
+create_file:
+  file.managed:
+    - name: /tmp/success
+
+    
+Sain ajaessa vastaukseksi:
+
+apuri_jr:
+    Data failed to compile:
+----------
+    No matching sls found for 'userstuff' in env 'base'
+
+Eli ei löydy oikeasta paikasta. Sls-tiedoston pitäisi olla "srv/salt/" kansiossa. Eli loin uuden tiedoston sinne ja kokeilin uudestaan samalla sisällöllä.
+
+                              ![image](https://github.com/user-attachments/assets/9fd637fa-b124-463f-8b9b-c12db85963cd)
+
+
+Toimii! Uudestaan yrittäessä mikään ei muuttunut. 
+
+![image](https://github.com/user-attachments/assets/7a87ba0a-a04d-4202-af38-758c8430f37c)
+
+Otin ssh-yhteyden minion-koneeseen ja tarkistin, että tiedosto "success" löytyy 
+
+                                        $ cd /tmp/
+                                        $ ls -la
+
+![image](https://github.com/user-attachments/assets/bd24e113-f3ff-4b66-bfb7-eb62259cda69)
+
+
+
+    
+
 
 
 
