@@ -334,15 +334,7 @@ Tässä kohdassa olin aivan hukassa siitä, miten syntaksia kirjoitetaan tai mit
 userstuff.sls sisältö:
 
 
-create_user:
-  user.present:
-    - fullname: Test User
-    - shell: /bin/zsh
-    - home: /home/testuser
-
-create_file:
-  file.managed:
-    - name: /tmp/success
+![image](https://github.com/user-attachments/assets/d7aa426a-f933-452c-a064-fb22470c97f6)
 
   Kokeilin ajaa komennon. 
                                           $
@@ -353,13 +345,8 @@ Sain vain pitkän error-listan.
 Tajusin, että en ole antanut käyttäjälleni "nimeä", vain "fullname", joka ei ole sama asia. Katsoin myös Salt Project ohjeesta, että voin tehdä myös yksinkertaisemman käskyn. Muutin sls-tiedoston sisältöä:
 
 
-create_user:
-  user.present:
-    - name: testuser
+![image](https://github.com/user-attachments/assets/b383ba9f-f1ab-43be-9030-c1be80c63bc4)
 
-create_file:
-  file.managed:
-    - name: /tmp/success
 
 
 Taas error:
@@ -384,13 +371,11 @@ create_file:
   file.managed:
     - name: /tmp/success
 
+                              $ sudo salt '*' state.apply userstuff
     
-Sain ajaessa vastaukseksi:
+Sain komennosta vastaukseksi:
 
-apuri_jr:
-    Data failed to compile:
-----------
-    No matching sls found for 'userstuff' in env 'base'
+No matching sls found for 'userstuff' in env 'base'
 
 Eli ei löydy oikeasta paikasta. Sls-tiedoston pitäisi olla "srv/salt/" kansiossa. Eli loin uuden tiedoston sinne ja kokeilin uudestaan samalla sisällöllä.
 
@@ -426,7 +411,7 @@ Otin ssh-yhteyden minion-koneeseen ja tarkistin, että tiedosto "success" löyty
 
 
 
-                                        $ 
+                              
 
 
                                         
