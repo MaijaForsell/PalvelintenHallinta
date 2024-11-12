@@ -300,8 +300,11 @@ Tiedoston sisälle kirjoitin:
 
 
 createfile:
+
   file.managed:
+  
     - name: /tmp/hello.txt
+    
 
 Sitten annoin minionille käskyn.
 
@@ -320,7 +323,7 @@ Ja siellä se oli.
 
 Käytin apuna Salt Project:in sivuilta löytyvää "Management of user accounts" (https://docs.saltproject.io/en/latest/ref/states/all/salt.states.user.html)
 
-14.05
+Työstin tehtävää noin 2 ja puoli tuntia.
 
 Otin ensimmäisenä ssh-yhteyden herra-koneeseen. Loin sinne hakemiston "writestuff" ja siihen hakemistoon tiedoston "userstuff.sls".
 
@@ -391,7 +394,38 @@ Otin ssh-yhteyden minion-koneeseen ja tarkistin, että tiedosto "success" löyty
                                         $ cd /tmp/
                                         $ ls -la
 
-![image](https://github.com/user-attachments/assets/bd24e113-f3ff-4b66-bfb7-eb62259cda69)
+                     ![image](https://github.com/user-attachments/assets/bd24e113-f3ff-4b66-bfb7-eb62259cda69)
+
+
+### h) Top file
+23.55
+
+Sain tehtävään apua Salt Projectin sivuilta "The Top File".
+
+Otin ssh-yhteyden herra-koneeseen. Loin kaksi sls tiedostoa. Nimet oli "hello" ja "apache".
+
+hello.sls sisältö:
+
+hello:
+
+  file.managed:
+  
+    - name: /tmp/helloworld.txt
+
+apache.sls sisältö:
+
+
+install_apache:
+
+  pkg.installed:
+  
+    - name: apache2
+
+    
+
+
+
+
 
 
 
@@ -436,8 +470,20 @@ Otin ssh-yhteyden minion-koneeseen ja tarkistin, että tiedosto "success" löyty
 
 
 ## Lähteet:
-Karvinen, 2021: "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file)
+Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant" (https://terokarvinen.com/2021/two-machine-virtual-network-with-debian-11-bullseye-and-vagrant/)
 
-Salminen, 2020: "h6" (https://oispadotka.wordpress.com/2020/05/12/h6/)
+Karvinen, 2023, "Salt Vagrant - automatically provision one master and two slaves" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file)
+
+Karvinen, 2014, "Hello Salt Infra-as-Code" (https://terokarvinen.com/2024/hello-salt-infra-as-code/)
+
+Karvinen 2018, "Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux", (https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/?fromSearch=salt%20quickstart%20salt%20stack%20master%20and%20slave%20on%20ubuntu%20linux)
+
+Salt contributors, "Salt overview" (https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml)
+
+Salt Project Team, 2024, "Salt Project Package Repository (repo.saltproject.io) Migration and Guidance" (https://saltproject.io/blog/salt-project-package-repo-migration-and-guidance/)
+
+Salminen, 2020, "h6" (https://oispadotka.wordpress.com/2020/05/12/h6/)
+
+Salt Project, "The Top File" (https://docs.saltproject.io/en/latest/ref/states/top.html), luettu: 12.11.2024
 
 
