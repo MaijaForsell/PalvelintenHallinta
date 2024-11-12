@@ -394,11 +394,11 @@ Otin ssh-yhteyden minion-koneeseen ja tarkistin, että tiedosto "success" löyty
                                         $ cd /tmp/
                                         $ ls -la
 
-                     ![image](https://github.com/user-attachments/assets/bd24e113-f3ff-4b66-bfb7-eb62259cda69)
+ ![image](https://github.com/user-attachments/assets/bd24e113-f3ff-4b66-bfb7-eb62259cda69)
 
 
 ### h) Top file
-23.55
+Tehtävään meni noin 45 minuuttia.
 
 Sain tehtävään apua Salt Projectin sivuilta "The Top File".
 
