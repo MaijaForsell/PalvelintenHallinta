@@ -404,6 +404,10 @@ Sain tehtävään apua Salt Projectin sivuilta "The Top File".
 
 Otin ssh-yhteyden herra-koneeseen. Loin kaksi sls tiedostoa. Nimet oli "hello" ja "apache".
 
+
+                                         $ sudoedit /srv/salt/hello.sls
+                                         $ sudoedit /srv/salt/apache.sls
+                                         
 hello.sls sisältö:
 
 hello:
@@ -421,7 +425,62 @@ install_apache:
   
     - name: apache2
 
+Seuraavaksi loin top.sls-tiedoston.
+
+                                        $ sudoedit /srv/salt/top.sls
+top.sls sisältö:
+base:
+
+  '*':
+  
+    - hello
     
+    - apache
+    
+Annoin komennon toteuttaa top.sls.
+
+                                        $ sudo salt '*' state.apply
+
+Se loi kyllä "helloworld"-tiedoston, mutta ei asentanut apachea. Sain error-koodin:
+                                        
+An error was encountered while installing package(s): E: Release file for https://deb.debian.org/debian/dists/bookworm-updates/InRelease is not valid yet (invalid for another 9h 55min 5s). Updates for this repository will not be applied.
+
+![image](https://github.com/user-attachments/assets/b381580e-fbc1-4d90-84d3-766f1129d16b)
+
+Myöskään päivittäminen ei auttanut.
+
+![image](https://github.com/user-attachments/assets/3fac7e68-de24-4da8-84a8-1b0bbc530042)
+
+Päätin siis tehdä toisenlaisen top.sls-tiedoston. Poistin apache.sls ja korvasin sen user.sls
+
+                                       $ sudo rm /srv/salt/apache.sls
+                                       $ sudoedit /srv/salt/user.sls
+
+user.sls sisältö:
+
+create_user:
+
+  user.present:
+  
+    - name: apachenkorvike
+
+Muokkasin top.sls-tiedostoon apachen tilalle user.
+
+base:
+
+  '*':
+  
+    - hello
+    
+    - user
+
+                                        $ sudo salt '*' state.apply
+                                        
+
+Ja tällä top-tiedostolla sain luotua käyttäjän ja tekstitiedosto oli jo olemassa. Idempotentti koodi siis.
+
+![image](https://github.com/user-attachments/assets/78430071-5ff3-48d1-9c55-52fdc90569f5)
+
 
 
 
