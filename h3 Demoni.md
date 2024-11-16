@@ -138,8 +138,19 @@ Päivitetty init.sls:
 
 ![image](https://github.com/user-attachments/assets/17e2179b-6129-4670-a438-4c7ccdcbbf74)
 
+Uudestaan kokeillaan komentoa.
+
+                                $ sudo salt '*' state.apply apache
 
 
+
+![image](https://github.com/user-attachments/assets/12e9dabe-5c37-4a53-b3fe-920b6ed63aac)
+
+Ainakaan masterin ip-osoitteella en saanut siihen yhteyttä, joten kokeilin minionin ip-osoitteella.
+
+![image](https://github.com/user-attachments/assets/bef89926-8aa2-468a-aea2-7a23d9665925)
+
+Toimii!
 
 
 
