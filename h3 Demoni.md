@@ -161,11 +161,6 @@ Ensin otin ssh-yhteyden herra-koneeseen. Etsin sieltä sshd_config-tiedoston. Ta
 
                                 $  sudoedit /etc/ssh/sshd_config
 
-![image](https://github.com/user-attachments/assets/6b0af4f6-f0d3-4414-ae58-224fc3160685)
-
-Käynnistin demonin uudelleen.
-                                $ sudo systemctl restart sshd
-
 
 ![image](https://github.com/user-attachments/assets/3912d5e0-205d-40d8-b3b1-f4d13ffd457c)
 
@@ -178,6 +173,13 @@ Loin sshd.sls-tiedoston ja liitin sinne grep-komennosta saamani sisällön. Pois
                                 $ sudoedit /srv/salt/sshd/sshd_config
 
 ![image](https://github.com/user-attachments/assets/7217d538-f94c-4b5c-a194-eedfaa31b282)
+
+
+
+![image](https://github.com/user-attachments/assets/6b0af4f6-f0d3-4414-ae58-224fc3160685)
+
+Käynnistin demonin uudelleen.
+                                $ sudo systemctl restart sshd
 
 
 Annoin komennon, jotta koskisi myös minion-konetta.
