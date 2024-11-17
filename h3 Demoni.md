@@ -205,6 +205,9 @@ Googlasin "oom kill" ja sain vastauksen, että se on "out of memory". Kone autom
 
   ![image](https://github.com/user-attachments/assets/e4170430-0890-495d-be9d-6b5a2b8f3b6b)
 
+Kokeilen ottaa yhteyttä minion-koneeseen.
+
+                                $ nc -vz apuri_jr 8888
   
 
 
