@@ -155,45 +155,80 @@ Toimii!
 
 ### b) SSHouto
 
-En tiennyt tarkkaan mitä tehtävässä pyydettiin tekemään, joten tein sen vain yksinkertaisimmalla tavalla, miten sen voisin tehdä.
+En tiennyt tarkkaan mitä tehtävässä pyydettiin tekemään, joten tein sen vain jotenkuten mukaillen lähdettä Karvinen, "Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port".
 
 Ensin otin ssh-yhteyden herra-koneeseen. Etsin sieltä sshd_config-tiedoston. Tarkistin sen olevan olemassa ja muokkasin # pois "Port 22" edestä. Lisäsin sinne myös toisen portin.
 
                                 $  sudoedit /etc/ssh/sshd_config
 
+![image](https://github.com/user-attachments/assets/3ed89626-c2b6-4745-86fc-48e2e94a53ce)
+
+
  Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
 
                                 $ grep -v '^#' /etc/ssh/sshd_config
 
-Loin sshd.sls-tiedoston ja liitin sinne grep-komennosta saamani sisällön. Poistin turhat välit.
+Loin sshd_config-tiedoston ja liitin sinne grep-komennosta saamani sisällön. Poistin turhat välit.
 
                                 $ sudoedit /srv/salt/sshd/sshd_config
 
-![image](https://github.com/user-attachments/assets/7217d538-f94c-4b5c-a194-eedfaa31b282)
+![image](https://github.com/user-attachments/assets/0648a3e0-b9eb-4f53-8045-9927398d22f6)
+
+Loin sshd.sls-tiedoston ja laitoin sisällöksi hiukan muokatun version sls-tiedoston sisällöstä, joka löytyy lähteestä Karvinen, "Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port".
+
+                                $ sudoedit /srv/salt/sshd.sls
+
+![image](https://github.com/user-attachments/assets/cba475b8-eafc-4aba-a522-71ce5891c839)
+
+Kokeillaan...
+
+                                $ sudo salt '*' state.apply sshd
+
+Ei toiminut. Salt-masteriin ei yhteyttä.
+
+![image](https://github.com/user-attachments/assets/69318aae-6578-4194-8aba-87c34678f444)
+
+Kysyin salt-masterin tilannetta.
+                                $ sudo systemctl status salt-master
+
+
+Ja nyt salt-master on kuollut? OOM-kill?
+
+Googlasin "oom kill" ja sain vastauksen, että se on "out of memory". Kone automaattisesti tappaa prosessin, joka vie tilaa muistista. Kokeilen vain käynnistää salt-masterin uudestaan. Vastaus saatu Neo4j, "Linux Out of Memory killer"(https://neo4j.com/developer/kb/linux-out-of-memory-killer/)
+
+                                $ sudo systemctl restart salt-master
+
+  Lähti käyntiin ongelmitta. Kokeillaan vielä kerran.
+
+                                $ sudo salt '*' state.apply sshd
+                                
+
+  ![image](https://github.com/user-attachments/assets/e4170430-0890-495d-be9d-6b5a2b8f3b6b)
+
+  
+
+
+                                
 
 
 
-Annoin komennon, jotta koskisi myös minion-konetta.
-
-![image](https://github.com/user-attachments/assets/d25d0f9f-d996-4d41-848f-5dc76d5045a2)
 
 
-Jotakin meni vikaan
-
-![image](https://github.com/user-attachments/assets/2628cfa9-f642-44de-8699-efd02c53bcc1)
-
-Katsotaas uudestaan kaikki. 
-
-Sourcen pitäisi olla:
-
-/srv/salt/sshd/sshd_config
-
-![image](https://github.com/user-attachments/assets/ede9f5db-c393-4289-893b-1ef89e4e644f)
 
 
-Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
+                                
 
-                                $ grep -v '^#' /etc/ssh/sshd_config
+
+
+
+
+
+
+
+
+
+
+
 
 //sshd_config
 
@@ -207,3 +242,4 @@ sshd:
      - file: /etc/ssh/sshd_config
 
 ## Lähteet
+Karvinen, 2018, "Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port" (https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh)
