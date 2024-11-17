@@ -173,12 +173,6 @@ Loin sshd.sls-tiedoston ja liitin sinne grep-komennosta saamani sisällön. Pois
 
 
 
-![image](https://github.com/user-attachments/assets/6b0af4f6-f0d3-4414-ae58-224fc3160685)
-
-Käynnistin demonin uudelleen.
-                                $ sudo systemctl restart sshd
-
-
 Annoin komennon, jotta koskisi myös minion-konetta.
 
 ![image](https://github.com/user-attachments/assets/d25d0f9f-d996-4d41-848f-5dc76d5045a2)
