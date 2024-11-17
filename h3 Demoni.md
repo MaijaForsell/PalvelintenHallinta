@@ -161,9 +161,6 @@ Ensin otin ssh-yhteyden herra-koneeseen. Etsin sieltä sshd_config-tiedoston. Ta
 
                                 $  sudoedit /etc/ssh/sshd_config
 
-
-![image](https://github.com/user-attachments/assets/3912d5e0-205d-40d8-b3b1-f4d13ffd457c)
-
  Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
 
                                 $ grep -v '^#' /etc/ssh/sshd_config
