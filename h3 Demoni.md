@@ -153,5 +153,61 @@ Ainakaan masterin ip-osoitteella en saanut siihen yhteyttä, joten kokeilin mini
 Toimii!
 
 
+### b) SSHouto
+
+En tiennyt tarkkaan mitä tehtävässä pyydettiin tekemään, joten tein sen vain yksinkertaisimmalla tavalla, miten sen voisin tehdä.
+
+Ensin otin ssh-yhteyden herra-koneeseen. Etsin sieltä sshd_config-tiedoston. Tarkistin sen olevan olemassa ja muokkasin # pois "Port 22" edestä. Lisäsin sinne myös toisen portin.
+
+                                $  sudoedit /etc/ssh/sshd_config
+
+![image](https://github.com/user-attachments/assets/6b0af4f6-f0d3-4414-ae58-224fc3160685)
+
+Käynnistin demonin uudelleen.
+                                $ sudo systemctl restart sshd
+
+
+![image](https://github.com/user-attachments/assets/3912d5e0-205d-40d8-b3b1-f4d13ffd457c)
+
+ Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
+
+                                $ grep -v '^#' /etc/ssh/sshd_config
+
+Loin sshd.sls-tiedoston
+
+ Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
+
+                                $ grep -v '^#' /etc/ssh/sshd_config
+
+![image](https://github.com/user-attachments/assets/d25d0f9f-d996-4d41-848f-5dc76d5045a2)
+
+
+Jotakin meni vikaan
+
+![image](https://github.com/user-attachments/assets/2628cfa9-f642-44de-8699-efd02c53bcc1)
+
+Katsotaas uudestaan kaikki. 
+
+Sourcen pitäisi olla:
+
+/srv/salt/sshd/sshd_config
+
+![image](https://github.com/user-attachments/assets/ede9f5db-c393-4289-893b-1ef89e4e644f)
+
+
+Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
+
+                                $ grep -v '^#' /etc/ssh/sshd_config
+
+//sshd_config
+
+
+/etc/ssh/sshd_config
+
+
+sshd:
+ service.running:
+   - watch:
+     - file: /etc/ssh/sshd_config
 
 ## Lähteet
