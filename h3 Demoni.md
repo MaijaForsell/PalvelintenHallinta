@@ -223,43 +223,16 @@ Uudelleenkäynnistin sekä minionin, että herran. Ei muuttanut mitään.
 
 ![image](https://github.com/user-attachments/assets/32fb0b4b-4b84-4bc8-b19e-129dc7fb9823)
 
+Localhost toimii kyllä.
 
+                                $ nc -vz localhost 8888
+
+![image](https://github.com/user-attachments/assets/3b4e912c-4be6-4a4e-b1df-e98b0b8f17ab)
 
   
 
 
-                                
 
-
-
-
-
-
-
-                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-//sshd_config
-
-
-/etc/ssh/sshd_config
-
-
-sshd:
- service.running:
-   - watch:
-     - file: /etc/ssh/sshd_config
 
 ## Lähteet
 Karvinen, 2018, "Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port" (https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh)
