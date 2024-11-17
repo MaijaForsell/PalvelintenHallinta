@@ -198,16 +198,33 @@ Googlasin "oom kill" ja sain vastauksen, että se on "out of memory". Kone autom
 
                                 $ sudo systemctl restart salt-master
 
-  Lähti käyntiin ongelmitta. Kokeillaan vielä kerran.
+Lähti käyntiin ongelmitta. Kokeillaan vielä kerran.
 
                                 $ sudo salt '*' state.apply sshd
                                 
 
   ![image](https://github.com/user-attachments/assets/e4170430-0890-495d-be9d-6b5a2b8f3b6b)
 
+Toimii, ainakin tähän asti.
+
 Kokeilen ottaa yhteyttä minion-koneeseen.
 
                                 $ nc -vz apuri_jr 8888
+                                
+Ei toiminut.
+
+                                $ nc -vz t002 8888
+Ei toiminut.
+
+"t002: forward host lookup failed: Unknown host". Kuitenkin minionkoneen hostname on t002. Eli onko ongelma kuitenkin minun tiedostoissa?
+
+Uudelleenkäynnistin sekä minionin, että herran. Ei muuttanut mitään.
+
+
+![image](https://github.com/user-attachments/assets/32fb0b4b-4b84-4bc8-b19e-129dc7fb9823)
+
+
+
   
 
 
