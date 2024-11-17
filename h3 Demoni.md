@@ -173,11 +173,14 @@ Käynnistin demonin uudelleen.
 
                                 $ grep -v '^#' /etc/ssh/sshd_config
 
-Loin sshd.sls-tiedoston
+Loin sshd.sls-tiedoston ja liitin sinne grep-komennosta saamani sisällön. Poistin turhat välit.
 
- Käytin grep-komentoa saadakseni kaikki, jotka eivät ole kommentteja.
+                                $ sudoedit /srv/salt/sshd/sshd_config
 
-                                $ grep -v '^#' /etc/ssh/sshd_config
+![image](https://github.com/user-attachments/assets/7217d538-f94c-4b5c-a194-eedfaa31b282)
+
+
+Annoin komennon, jotta koskisi myös minion-konetta.
 
 ![image](https://github.com/user-attachments/assets/d25d0f9f-d996-4d41-848f-5dc76d5045a2)
 
