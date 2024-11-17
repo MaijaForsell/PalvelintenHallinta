@@ -96,7 +96,7 @@ Tarkistin onko apache päällä automaattisesti.
 
                                 $ sudo systemctl status apache2
 
-                                ![image](https://github.com/user-attachments/assets/c908a468-db64-4880-9cc9-22262ab162dc)
+![image](https://github.com/user-attachments/assets/c908a468-db64-4880-9cc9-22262ab162dc)
 
 Ja oli.
 
@@ -108,6 +108,8 @@ Poistin apachen, jotta voisin asentaa sen uudelleen.
 
 
 Loin uuden hakemiston apachelle ja siirryin sinne. Loin sinne init.sls-tiedoston. 
+
+
                                 $ sudo mkdir /srv/salt/apache
                                 
                                 $ cd /srv/salt/apache
@@ -214,6 +216,7 @@ Kokeilen ottaa yhteyttä minion-koneeseen.
 Ei toiminut.
 
                                 $ nc -vz t002 8888
+                                
 Ei toiminut.
 
 "t002: forward host lookup failed: Unknown host". Kuitenkin minionkoneen hostname on t002. Eli onko ongelma kuitenkin minun tiedostoissa?
