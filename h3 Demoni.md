@@ -229,6 +229,15 @@ Localhost toimii kyllä.
 
 ![image](https://github.com/user-attachments/assets/3b4e912c-4be6-4a4e-b1df-e98b0b8f17ab)
 
+Kokeilin ip-osoitteella. Jotakin tapahtui. Host on "unknown", mutta laittaessa portiksi 8888 se on open, mutta laittaessa 1234, se ei mene läpi.
+
+                                $ nc -vz 192.168.88.102 8888
+
+![image](https://github.com/user-attachments/assets/53acabae-03d2-4d54-8047-e9375f0406b0)
+
+
+
+
   
 
 
