@@ -251,7 +251,88 @@ Olen miettinyt myös voimanostoharrastukseni kannalta, jos sieltä löytyisi jot
 
 ### d) VirtualHost
 
-Pystytin kaksi konetta, joista toinen on master ja toinen on minion.
+Aloitin 13.29 lopetin 14.56 (18.11)
+
+Pystytin kaksi konetta, joista toinen on master ja toinen on minion. Testasin yhteydet ja se oli ok.
+
+Ensimmäinen asia, jonka tein oli /srv/salt/apache - hakemiston luominen.
+
+                                $ sudo mkdir /srv/salt/apache
+
+Sitten loin ja editoin init.sls-tiedoston.
+                                $ sudoedit /srv/salt/apache/init.sls
+
+
+Tässä sen sisältö:
+
+![image](https://github.com/user-attachments/assets/e26d6afa-c298-4a92-a500-872c6f77e683)
+
+
+Loin samalla filellä käyttäjän, jonka nimi on maijaleena. Loin käyttäjälle kotihakemiston, jonne voin sitten myöhemmin sijoittaa html-tiedoston. Tiedostoa pitäisi nyt pystyä muuttamaan. Tiesin, että joudun muuttamaan lupia apachen konfiguraatio-tiedostossa, mutta kokeilin ensin näin, jotta minulle edes tulisi konfiguraatio-tiedosto. En ollut varma josko se toimisi, mutta kokeilun arvoista.
+
+Annoin komennon.
+
+                                $ sudo salt '*' state.apply apache
+
+![image](https://github.com/user-attachments/assets/74ffe7b4-bcf6-4f97-a37c-f7f6785823c7)
+
+Jotakin oli vialla. Googlauksen mukaan synteksivirhe. Kokeilin ensin tehdä asennuksen ja vasta sitten muokata kaiken muun.
+
+Tässä init.sls apachelle:
+
+![image](https://github.com/user-attachments/assets/52fdc0fd-cbef-4a4f-88e8-c38be741d451)
+
+
+Asentaminen onnistui.
+
+![image](https://github.com/user-attachments/assets/29ee8b82-e857-4f51-b806-98965e28b1f4)
+
+
+
+Nyt luon käyttäjän ja käyttäjälle kotihakemiston.
+
+                                $ sudo mkdir /srv/salt/user
+                                $ sudoedit /srv/salt/user/init.sls
+
+![image](https://github.com/user-attachments/assets/bb7376af-bed0-4e68-b6e0-85f50b8a1f1b)
+
+                                $ sudo salt '*' state.apply user
+
+![image](https://github.com/user-attachments/assets/7bc0c9e0-2092-4755-90f0-c92f1d04061d)
+
+Ei toiminut. Ilmeisesti väärä syntaksi ja tämä on nimenomaan se ongelma joka aikaisemmassa yrityksessä prakasi. Tiedän YAML vaativan joko listan, sanakirjan tai boolean. Mutta miksi tämä on viallinen? Poistin välilyönnin, joka oli ennen "user.present" ja poistin seuraavilta riveiltä yhden välilyönnin myös. 
+
+Kokeilin uudestaan. Ei toiminut. Seuraavana vertasin aikaisempiin tekemiini sls- tiedostoihin muissa tehtävissä ja tajusin miksi siellä oli ollut välilyönti. Minun pitää "nimetä" mitä teen. Muokkasin uudestaan
+
+![image](https://github.com/user-attachments/assets/5a83e1c8-a603-48ea-bcad-11244208c63f)
+
+Ja se toimi! 
+
+![image](https://github.com/user-attachments/assets/0738eac7-aeb1-4a35-8fe4-04d3354c301c)                           
+
+Nyt voin työstää apachen konfiguraatiota. Tässä käytin Geeks for Geeks "How to Change the Root Directory of an Apache server?" apuna. Ennen configurointi-filen muuttamista on kuitenkin löydettävä se. 
+
+
+
+
+
+
+
+(Varmuuden vuoksi. poistan kyllä ajallaan)
+/var/www/html/index.html:
+  file.managed:
+   - source: salt://apache/nettisivu.html
+   - name: /home/maijaleena/index.html
+   - user: maijaleena
+   - group maijaleena
+   - mode: 644
+
+
+ user.present:
+   - name: maijaleena
+   - home: /home/maijaleena
+apache2:
+
 
 
   
@@ -261,3 +342,7 @@ Pystytin kaksi konetta, joista toinen on master ja toinen on minion.
 
 ## Lähteet
 Karvinen, 2018, "Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port" (https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh)
+
+Salt Project, "How do i use salt states?",(https://docs.saltproject.io/en/latest/topics/tutorials/starting_states.html)
+
+Geeks for geeks, "How to Change the Root Directory of an Apache server?" (https://www.geeksforgeeks.org/how-to-change-the-root-directory-of-an-apache-server/)
