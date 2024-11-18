@@ -241,6 +241,19 @@ Kokeilin ip-osoitteella. Jotakin tapahtui. Host on "unknown", mutta laittaessa p
 
 
 
+
+### c) Oma moduli.
+
+En tiedä mitä voisin tehdä moduliksi. En ole luova tai tekninen ihminen. Mielenkiinnonkohteeni eivät varsinaisesti koske tätä. Yksi lempiasioista päivässä on aamulla kuunnella uutiset kahvin kera, joten kenties siihen liittyen? Lähin asia mitä keksin, voisi jokin uutisiin liittyvä "Päivän uutiset", joka menisi minioneille joko tiettyyn aikaan tai joka näkysi sisäänkirjautuessa. En tiedä kuinka realistinen tavoite tämä on ja miten laillista se olisi "varastaa" Ylen sivuilta pääuutiset. En oikeasti edes tiedä mitä voisin tehdä. 
+
+Olen miettinyt myös voimanostoharrastukseni kannalta, jos sieltä löytyisi jotakin mielenkiintoista tai tekemisen arvoista. En vain tiedä miten se lopulta liittyisi tähän kurssiin ja siihen ideaan, että se olisi jaossa useille tietokoneille. Teoriassa jokin laskuri voisi olla mahdollinen, mutta sen jakamisesta en osaa sanoa yhtään mitään. Se olisi käytännössä vain erillinen "sovellus", joka menee muille koneille. 
+
+
+### d) VirtualHost
+
+Pystytin kaksi konetta, joista toinen on master ja toinen on minion.
+
+
   
 
 
