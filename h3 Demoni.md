@@ -354,7 +354,7 @@ Sain taas errorin
 
 "State 'apache_install' in SLS 'apache2' is not formed as a list"
 
-Ei onnistunut. Olen kädetön tämän kanssa.
+Ei onnistunut. Olen kädetön tämän kanssa. Koitin muokata syntaksia, tarkistaa minkä verran välilyöntejä on. Mikään ei toiminut.
 
 
 
