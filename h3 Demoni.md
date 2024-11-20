@@ -252,7 +252,7 @@ Olen miettinyt myös voimanostoharrastukseni kannalta, jos sieltä löytyisi jot
 ### d) VirtualHost
 
 Aloitin 13.29 lopetin 14.56 (18.11)
-
+7.00-
 Pystytin kaksi konetta, joista toinen on master ja toinen on minion. Testasin yhteydet ja se oli ok.
 
 Ensimmäinen asia, jonka tein oli /srv/salt/apache - hakemiston luominen.
@@ -310,32 +310,55 @@ Ja se toimi!
 
 ![image](https://github.com/user-attachments/assets/0738eac7-aeb1-4a35-8fe4-04d3354c301c)                           
 
-Nyt voin työstää apachen konfiguraatiota. Tässä käytin Geeks for Geeks "How to Change the Root Directory of an Apache server?" apuna. Ennen configurointi-filen muuttamista on kuitenkin löydettävä se. 
+Nyt voin työstää apachen konfiguraatiota. Tässä käytin Geeks for Geeks "How to Change the Root Directory of an Apache server?" apuna. Ennen configurointi-filen muuttamista on kuitenkin löydettävä se. Yritin etsiä vastausta googlesta ja nettisivuilta.
+
+Tässä kohdassa en enää ymmärtänyt mikä on vialla, kun en löytänyt etc/apache2-kansiota. Kuitenkin apachen pitäisi olla minulla?
+
+![image](https://github.com/user-attachments/assets/18c2adcb-a937-4d4a-a07c-85d987656b5e)
+
+Mutta sitä ei löydy?
+
+Hetken kipuilun jälkeen tajusin että ehkä apache on vain minion-koneessa. Eli kokeilen asentaa apachen masterille käsin. 
+
+                                $ sudo apt install apache2
+                                $ sudo systemctl enable apache2
+
+
+Nyt voin koittaa etsiä apache2 config-tiedostoa. Se löytyi /etc/apache2-kansiosta, kuten lähteessä, Geek for geeks, sanottiin.
+
+![image](https://github.com/user-attachments/assets/d4ffbc82-1dd5-4d7c-aebb-7e703ae1d323)
+
+Muokkasin tämän konfiguroinnin. En rehellisesti osannut sanoa mitä teen tai miksi, miten, toimiiko se. 
+
+Päivitin apache/init.sls
+
+![image](https://github.com/user-attachments/assets/40ab93fd-44bd-44d3-a3d8-9f2bc7a5039d)
+
+Taas kerran, kokeilemalla selviää. Kokeilemalla sain selville että salt-master on taas mennyt kuolemaan. Käynnistin uudelleen.
+
+![image](https://github.com/user-attachments/assets/cd6c64ce-1305-4f10-91dc-556915be0d58)
+
+                                $ sudo systemctl restart salt-master
+                                $ sudo salt '*' state.apply user
+
+Sain errorin:
+
+"The function "state.apply" is running as PID 4528 and was started at 2024, Nov 19 10:08:50.959193 with jid 20241119100850959193"
+
+En saanut netistä selkeää vastausta mistä on kyse, joten kenties en saisi muokata olemassa olevaa sls-tiedostoa? Kokeilin kopioida päivitetyn sisällön ja kirjasin sen uuteen kansioon ja init.sls-tiedostoon.
+
+                                $ sudo mkdir /srv/salt/apache2
+                                $ sudoedit /srv/salt/apache2/init.sls
+                                $ sudo salt '*' state.apply apache2
+Sain taas errorin
+
+"State 'apache_install' in SLS 'apache2' is not formed as a list"
+
+Ei onnistunut. Olen kädetön tämän kanssa.
 
 
 
-
-
-
-
-(Varmuuden vuoksi. poistan kyllä ajallaan)
-/var/www/html/index.html:
-  file.managed:
-   - source: salt://apache/nettisivu.html
-   - name: /home/maijaleena/index.html
-   - user: maijaleena
-   - group maijaleena
-   - mode: 644
-
-
- user.present:
-   - name: maijaleena
-   - home: /home/maijaleena
-apache2:
-
-
-
-  
+![image](https://github.com/user-attachments/assets/a478cbaf-7bbc-4d1e-a3c4-39c199d1bff2)
 
 
 
