@@ -1,7 +1,6 @@
 # Oma moduli, sähköposti
 
-Lähdin tekemään sähköpostipalvelua, jossa postfix. Dovecot on ilmeisesti myös vastaanottamiseen tarpeellinen, joten pyrin tekemään myös sen, jotta tämä toimisi.
-
+Lähdin tekemään sähköpostipalvelua, jossa postfix. (Ehkä dovecot? en tiedä)
 
 ## Ympäristö, jossa projektin teen:
 
@@ -43,12 +42,57 @@ Olen hiukan pihalla mitä kukin asetus tarkoittaa, joten annoin käskyn "sudo na
         $ sudo nano /etc/postfix/main.cf
 
 
-Tässä tämän hetken postfixin main.cf -tiedoston oleelliset osat. Tällä pitäisi pystyä lähettämään sähköpostia koneen sisällä. Snakeoil sertifikaattien käytön ei pitäisi myöskään olla ongelma.
+Tässä tämän hetken postfixin main.cf -tiedoston oleelliset osat. Tällä pitäisi pystyä lähettämään sähköpostia koneen sisällä. Snakeoil sertifikaattien käytön ei pitäisi myöskään olla ongelma. Lisäsin sinne Maildir-rivin, jotta postia voisi saada.
 
 
 ![image](https://github.com/user-attachments/assets/051bc029-4dbb-4ec5-9acc-141997e56c6d)
 
 
+Kysyin josko olisin tehnyt jotakin väärin. En saanut vastausta, joten en varmaan.
+
+                                    $ sudo postfix check
+
+
+Tuli aika luoda käyttäjät. Sain komennot samasta lähteestä. Loin kaksi käyttäjää, "sender" ja "receiver"
+
+                                    $ sudo useradd -m -s /bin/bash *tähän käyttäjänimi*
+                                    $ sudo passwd *tähän käyttäjänimi*
+
+Luomisen jälkeen oli vuorossa postfixin päällä pysymisen varmistaminen.
+
+                                    $ sudo systemctl enable postfix
+
+![image](https://github.com/user-attachments/assets/ac0b105c-a6df-4bb6-89aa-cfca68041e6d)
+
+Halusin kokeilla postin lähettämistä.
+
+                                    $ echo "Test email body" | mail -s "Test Email Subject" receiver@maijanposti.org
+
+Sain kuitenkin tiedon ettei "mail"-komentoa ole olemassa. 
+
+-bash: mail: command not found
+
+Googlaamalla sain vastauksen, että pitää asentaa mailutils
+
+                                    $ sudo apt install mailutils
+                                    
+Kokeilin uudestaan ja tällä kertaa komento saattoi mennä läpi. Kokeilin kirjautua receiver-käyttäjälle ja etsiä postin.
+
+                                    $ su - receiver
+                                    $ cd ~/Maildir
+                                    $ ls ~/Maildir/new
+                                    $ cat ~/Maildir/new/1732644234.V801I600017M120555.t001
+
+
+![image](https://github.com/user-attachments/assets/8fad3591-7ae6-4fcc-b1ee-41171ba2f8d7)
+
+Löytyy!
+
+
+
+
+
+                                    
 
 
 
