@@ -20,7 +20,7 @@ Ensin asensin postfixin
 
          $ sudo apt install postfix
 
-Kopioin itselleni talteen config-tiedoston myöhempää käyttöä varten. Nyt ensimmäisellä asennuskerralla muokkaisin tiedostoa suoraan, mutta suunnittelin, että myöhemmässä vaiheessa käyttäisin kopioimaani config-tiedostoa korvaamaan aiempi tiedosto kokonaan käyttämällä "pkg-file-service" -metodia.
+Kopioin itselleni talteen main.cf-tiedoston myöhempää käyttöä varten. Nyt ensimmäisellä asennuskerralla muokkaisin tiedostoa suoraan, mutta suunnittelin, että myöhemmässä vaiheessa käyttäisin kopioimaani main.cf-tiedostoa korvaamaan aiempi tiedosto kokonaan käyttämällä "pkg-file-service" -metodia.
 
 
 Sain kuitenkin mystisen graafisen käyttöliittymän eteeni? Valitsin pelkän internetin postin käytön. Annoin nimeksi "maijanposti.org". 
@@ -34,10 +34,24 @@ Sain Postfixin asennettua masterille, se on myös päällä.
 
 Tein saman myös minionille, eli asensin postfixin.
 
+![image](https://github.com/user-attachments/assets/8776e725-3b94-406f-8de3-394df2f2d303)
 
-Tämä on kovin monimutkaista, annoin käskyn "sudo nano", jotta saisin eteeni tekstiä.
+
+
+Olen hiukan pihalla mitä kukin asetus tarkoittaa, joten annoin käskyn "sudo nano" saadakseni eteeni tekstiä.
 
         $ sudo nano /etc/postfix/main.cf
+
+
+Tässä tämän hetken postfixin main.cf -tiedoston oleelliset osat. Tällä pitäisi pystyä lähettämään sähköpostia koneen sisällä. Snakeoil sertifikaattien käytön ei pitäisi myöskään olla ongelma.
+
+
+![image](https://github.com/user-attachments/assets/051bc029-4dbb-4ec5-9acc-141997e56c6d)
+
+
+
+
+
         
          
 
