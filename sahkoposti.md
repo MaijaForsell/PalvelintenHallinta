@@ -39,7 +39,7 @@ Tein saman myös minionille, eli asensin postfixin.
 
 Olen hiukan pihalla mitä kukin asetus tarkoittaa, joten annoin käskyn "sudo nano" saadakseni eteeni tekstiä.
 
-        $ sudo nano /etc/postfix/main.cf
+                                   $ sudo nano /etc/postfix/main.cf
 
 
 Tässä tämän hetken postfixin main.cf -tiedoston oleelliset osat. Tällä pitäisi pystyä lähettämään sähköpostia koneen sisällä. Snakeoil sertifikaattien käytön ei pitäisi myöskään olla ongelma. Lisäsin sinne Maildir-rivin, jotta postia voisi saada.
@@ -87,6 +87,42 @@ Kokeilin uudestaan ja tällä kertaa komento saattoi mennä läpi. Kokeilin kirj
 ![image](https://github.com/user-attachments/assets/8fad3591-7ae6-4fcc-b1ee-41171ba2f8d7)
 
 Löytyy!
+
+Eli tässä vaiheessa toimi paikallisesti, master-koneessa. Seuraava haaste oli saada yhteys toimimaan master-koneesta minion-koneeseen. Loin minion-koneeseen uuden käyttäjän, joka ei ole master-koneessa. Minun piti myös päivittää main.cf kummassakin koneessa, jotta ne voisivat olla yhteydessä. En tiedä miten se tehdään, mutta kokeilin ensin vain lisätä "sallittuihin" yhteyksiin kummankin koneen hostnamet.
+
+
+![image](https://github.com/user-attachments/assets/83a86d32-9a4b-4a62-94a2-3003163b60fc)
+
+
+Latasin minion-koneeseen mailutils, päivitin main.cf ja käynnistin postfixin uudelleen. Tein uuden käyttäjän "minionkone". 
+
+![image](https://github.com/user-attachments/assets/859dcd9d-2601-47f0-b397-fa5e71fb9e59)
+
+Kokeilin lähettää master-koneen sender-käyttäjällä postia minionkone-käyttäjälle, joka sijaitsee minionkoneessa. Se ei kuitenkaan löydä maildir-kansiota.
+
+![image](https://github.com/user-attachments/assets/6cb01ad1-e4f4-48eb-8e07-e062e24cf705)
+
+Kokeilin poistaa postfixin kokonaan minionkoneelta. Latasin sen uudelleen heti.
+
+                                    $ sudo apt purge postfix
+
+                                    
+Lataamisen jälkeen konfiguroin ja uudelleenkäynnistin postfixin. Loin myös uuden käyttäjän. Silti en löytänyt maildir-kansiota. En ollut varma miksi. Kokeilin jos maildir-kansion olemassaoloon liittyy se, että postia on saatava. Lähetin siis paikallisesti postia minionkoneen käyttäjien välillä.
+
+                                    $ echo "Test email body" | mail -s "Testi" minionreceiver@maijanposti.org
+
+![image](https://github.com/user-attachments/assets/424d4800-88f1-4830-9269-c824f3d53ed1)
+
+Ja se toimii. Eli ongelma on yhteydessä siihen, etten ole osannut yhdistää koneiden postfixejä. 
+
+Tässä kohtaa tiedän sen, että postfix toimii paikallisesti kummassakin koneessa. Tiedän myös, että aloittaessani koodin kirjoittamisen ja saltin käyttämisen oikeasti, minun kannattaa tehdä main.cf-tiedostosta jinja-template, jotta minun ei tarvitse tehdä erillistä tiedostoa jokaiselle eri minionille. Voin siis todennäköisesti korvata tiedostossa hostnamen "{{ grains['host']". 
+
+
+## !!PALAUTUS H4!! (väliaikainen)
+
+
+Kaikki tämän jälkeen on tehty 27.11.2024 klo 14.00 jälkeen
+
 
 
 
