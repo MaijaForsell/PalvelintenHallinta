@@ -141,14 +141,39 @@ Käynnistin koneissa Postfixin uudelleen. Sitten kokeilin lähettää minionille
 
 ![image](https://github.com/user-attachments/assets/5b02c3af-ca06-4224-bb54-51db2a90f74c)
 
-Se ei toiminut. Oli aika tutkia lisää. 
+Se ei toiminut. Oli aika tutkia lisää. En löytänyt mitään suoraa vastausta, sillä monissa ohjeissa ei puhuttu kahden koneen keskustelemisesta ilman, että olisi jokin ulkoinen "relayhost" tai vastaava. Joten kysyin tekoälyltä, missä ongelma voisi olla.
+
+"I have a postifix problem. I have two virtual computers set up using vagrant. I have configured my postfix main.cf file enough, so that i can send post inside a machine. Let's say machines are called machine1 and machine2. I would like to have the postfix to be able to send post between these two. 
+
+Currently: A user in machine1 can send post to another user in machine1
+
+Aiming to: A user in machine1 can sen post to a user in machine2. 
+
+They currently have postfix under the same name. "User@maijanposti.org"" 
+
+
+Vastaukseksi sain ohjeita, kuten DNS tai etc/hosts muokkaaminen. Muutin myös kummankin main.cf-tiedoston "myhostname" osion muotoon .maijanposti.org.
+
+![image](https://github.com/user-attachments/assets/fd8ffd09-1478-4aa2-ab3a-47f4ef13bd68)
+
+Poistin myös "mydestinations" osiosta toisen koneen nimen.
+
+ChatGPT:n mukaan minun pitäisi muokata etc/hosts kummallakin koneella ja muokata sinne oikeat tiedot. Joten kokeilin sitä.
+
+![image](https://github.com/user-attachments/assets/a83a6d68-8e4c-48f1-af98-607cc61792cd)
+
+Tämä oli yksi asia, jonka tekeminen etänä Saltin avulla hieman huolestutti, mutta jos saisin edes näin toimimaan, niin ongelmia olisi yksi vähemmän.
+
+
+![image](https://github.com/user-attachments/assets/0148f552-ae50-4b0c-aa65-675e1ee7c815)
+
+Sain vahingossa ChatGPT:ltä yhden tärkeän vastauksen. Olin ilmeisesti lähettänyt aivan väärin postia. Olin pyrinyt lähettämään postia osoitteeseen "minionuser@maijanposti.org" vaikka sen pitäisi olla "minionuser@t002.maijanposti.org". Toivoin tämän olevan ongelman ydin.
+
+                                    $ echo "Test email from t001" | mail -s "Test" minionreceiver@t002.maijanposti.org
 
 
 
-
-
-
-
+Mutta ei se ollut. En tiennyt oliko ongelma oikeasti se vai keksikö tekoäly itse koko jutun.
                                     
 
 
