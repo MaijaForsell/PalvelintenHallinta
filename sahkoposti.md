@@ -191,7 +191,8 @@ Käynnistin koneissa taas postfixin uudelleen, jotta asetukset toimisi.
 
 Lähetin kaksi viestiä, joista toinen on lisätty t002 osoitteeseen, jos se vaikuttaisi asiaan
 
-![image](https://github.com/user-attachments/assets/27e7501e-2e6a-48b8-a160-5b31e333d1b6)
+![image](https://github.com/user-attachments/assets/b78cf66f-c962-4544-94d8-cf10752ebf34)
+
 
 Ei ollut tämäkään ongelman ydin. Kuitenkin saapuneet postit koneen sisällä menevät oikein vain @maijanposti.org.
 
