@@ -167,13 +167,40 @@ Tämä oli yksi asia, jonka tekeminen etänä Saltin avulla hieman huolestutti, 
 
 ![image](https://github.com/user-attachments/assets/0148f552-ae50-4b0c-aa65-675e1ee7c815)
 
-Sain vahingossa ChatGPT:ltä yhden tärkeän vastauksen. Olin ilmeisesti lähettänyt aivan väärin postia. Olin pyrinyt lähettämään postia osoitteeseen "minionuser@maijanposti.org" vaikka sen pitäisi olla "minionuser@t002.maijanposti.org". Toivoin tämän olevan ongelman ydin.
+Sain vahingossa ChatGPT:ltä yhden ehdotuksen. Olin ilmeisesti tekoälyn mukaan lähettänyt aivan väärin postia. Olin pyrinyt lähettämään postia osoitteeseen "minionuser@maijanposti.org" vaikka sen pitäisi olla "minionuser@t002.maijanposti.org". Toivoin tämän olevan ongelman ydin.
 
                                     $ echo "Test email from t001" | mail -s "Test" minionreceiver@t002.maijanposti.org
 
 
 
-Mutta ei se ollut. En tiennyt oliko ongelma oikeasti se vai keksikö tekoäly itse koko jutun.
+Mutta ei se ollut. En tiennyt oliko ongelma oikeasti se vai keksikö tekoäly itse koko jutun. Aion pitää mielessä, mutta oletin sen olleen vain jokin tekoälyn "ajatusvirhe."
+
+Seuraava kysymys olisi, jos lisäisin "mydestinations" osioon myös hostnamet ja postfixin "myhostname" nimet. Koska seuraamani ohjeen (Postfix, "postfix configuration parameters") mukaan hostnamet on oltava muotoa "host.example.org"
+
+![image](https://github.com/user-attachments/assets/7476fab1-4f6e-402f-bba7-92bd2404f6c9)
+
+Tässä esimerkki mitä minulla lukee:
+
+![image](https://github.com/user-attachments/assets/d5152aa5-469d-4bbf-ae70-42a2fb523385)
+
+Myös etc/hosts tietää nämä nimet. Tässä t001 /etc/hosts:
+
+![image](https://github.com/user-attachments/assets/b2b88a2a-deb6-4c62-9eab-03aab1a0dc86)
+
+Käynnistin koneissa taas postfixin uudelleen, jotta asetukset toimisi.
+
+Lähetin kaksi viestiä, joista toinen on lisätty t002 osoitteeseen, jos se vaikuttaisi asiaan
+
+![image](https://github.com/user-attachments/assets/27e7501e-2e6a-48b8-a160-5b31e333d1b6)
+
+Ei ollut tämäkään ongelman ydin. Kuitenkin saapuneet postit koneen sisällä menevät oikein vain @maijanposti.org.
+
+![image](https://github.com/user-attachments/assets/8b59e4dc-9307-410f-845b-01ad0bdea913)
+
+
+
+
+
                                     
 
 
@@ -194,4 +221,9 @@ Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant
 
 Reintech, 2024 "Configuring Mail Server with Postfix on Debian 12" (https://reintech.io/blog/configure-postfix-mail-server-debian-12)
 
+Postfix, "Virtual README" (https://www.postfix.org/VIRTUAL_README.html)
+
+Postfix, "Postfix Basic Configuration" (https://www.postfix.org/BASIC_CONFIGURATION_README.html)
+
+Linux Wiki, "/etc/hosts" (https://www.linux.fi/wiki//etc/hosts)
 
