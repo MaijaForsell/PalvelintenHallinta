@@ -199,7 +199,17 @@ Ei ollut tämäkään ongelman ydin. Kuitenkin saapuneet postit koneen sisällä
 ![image](https://github.com/user-attachments/assets/8b59e4dc-9307-410f-845b-01ad0bdea913)
 
 
-Minulta alkoi tässä vaiheessa loppumaan vastaukset, joten siirryin työstämään erillistä, tehtävän lopullista versiota.
+Tutkiessani main.cf, huomasin yläosassa kommentin, jossa kerrottiin "See /usr/share/postfix/main.cf.dist for a commented, more complete version". En voi uskoa, että tälläinen on koko ajan ollut edessäni. Siellä eräs ohje oli:
+
+![image](https://github.com/user-attachments/assets/c477630d-71ae-47e7-bdc2-0228f98dd2fc)
+
+Seuraavana siis työstämään tätä. Vaihdoin jo "myorigin" osion ja ryhdyin etsimään tietoa tuosta alias-osasta. Menin /etc/aliases ja sieltä minut ohjattiin manuaaliin.
+
+![image](https://github.com/user-attachments/assets/d793ec9e-fa6d-495e-b645-5d27cd866d9d)
+
+Manuaalin tutkimisesta ei ollut mitään hyötyä ja aika alkaa pikkuhiljaa loppumaan. Päätin siirtyä tekemään Salt-versiota siitä, mitä minulla nyt on olemassa. 
+
+
 
 ### Salt-master ja Salt-minion, sekä idempotentti moduuli
 
