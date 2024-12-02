@@ -1,11 +1,8 @@
 # Postfix-moduuli
 
 ### Pohjan luominen
-Tarkoituksena oli luoda moduuli, jolla asennetaan ja konfiguroidaan Postfix Saltilla. Loin uuden kansion ja sinne vagrantfilen. Vagrantfile on lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta Debian 11 vaihdettu Debian 12. Lisäsin myös kolmannen koneen. Halusin minimoida mahdollisuudet ongelmiin liittyen kaikkeen muuhun, kuin saltin käyttöön ja olin aiemmin käyttänyt tätä vagrantfileä.
+Tarkoituksena oli luoda moduuli, jolla asennetaan ja konfiguroidaan Postfix Saltilla. Loin uuden kansion ja sinne vagrantfilen. Vagrantfile on lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta Debian 11 vaihdettu Debian 12. Halusin minimoida mahdollisuudet ongelmiin liittyen kaikkeen muuhun, kuin saltin käyttöön ja olin aiemmin käyttänyt tätä vagrantfileä.
 
-Asensin salt-masterin ja salt-minionin käsin koneisiin.
-
-Hyväksyin minionien avaimet master-tietokoneella ja testasin yhteydet.
 
 
 
@@ -22,7 +19,8 @@ Käytin tehtävien tekemiseen kannettavaa tietokonettani, mallia Lenovo Yoga Sli
 
 Työkaluina VirtualBox ja Vagrant
 
-Käyttämäni Vagrantfile on otettu lähteestä Tero Karvinen, 2023, "Salt Vagrant - automatically provision one master and two slaves" (https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file)
+Käyttämäni Vagrantfile on otettu lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant"
+
 
 ## Lähteet
 
