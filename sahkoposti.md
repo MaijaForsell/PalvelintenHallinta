@@ -1,6 +1,6 @@
 # Oma moduli, sähköposti
 
-Lähdin tekemään sähköpostipalvelua, jossa postfix. (Ehkä dovecot? en tiedä)
+Lähdin tekemään sähköpostipalvelua, jossa postfix.
 
 ## Ympäristö, jossa projektin teen:
 
@@ -199,6 +199,12 @@ Ei ollut tämäkään ongelman ydin. Kuitenkin saapuneet postit koneen sisällä
 ![image](https://github.com/user-attachments/assets/8b59e4dc-9307-410f-845b-01ad0bdea913)
 
 
+Minulta alkoi tässä vaiheessa loppumaan vastaukset, joten siirryin työstämään erillistä, tehtävän lopullista versiota.
+
+## Salt-master ja Salt-minion, sekä idempotentti moduuli
+
+
+
 
 
 
@@ -228,3 +234,4 @@ Postfix, "Postfix Basic Configuration" (https://www.postfix.org/BASIC_CONFIGURAT
 
 Linux Wiki, "/etc/hosts" (https://www.linux.fi/wiki//etc/hosts)
 
+Wiki Debian, "Postfix" (https://wiki.debian.org/Postfix)
