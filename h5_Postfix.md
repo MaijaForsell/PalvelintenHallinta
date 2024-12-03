@@ -37,9 +37,31 @@ mynetworks: Lisäsin käyttämäni IP-verkon, jossa useamman koneen voisi olla m
 
 myorigin: Korvasin siihen $mydomain, samasta syystä kuin mynetworks.
 
+### Asennus minionille, eli infraa koodina
+
+Loin samaan "postfix_main" -kansioon uuden tiedoston, joka pohjautuu main.cf-tiedostoon. Muutin siihen ainoan oleellisen asian tällä hetkellä, eli hostname ja mydestination-osion yksi osoite.
+
+                                $ cd /srv/salt/postfix_main/
+                                $ sudoedit minion_main
+
+
+![image](https://github.com/user-attachments/assets/f63be244-56e9-4162-b375-04c1286194c8)
+
+Sitten ryhdyin rakentamaan init.sls-tiedostoa asennusta varten.
+
+                                $ sudo mkdir /srv/salt/postfix_module
+                                $ sudoedit init.sls
+
+                                
+
+
+
+
+
 ### Jinja template
 
 Sain idean luoda jinja template, kun hain tietoa miten voisin tehdä sellaisen main.cf-filen, jota voisin käyttää kaikissa minioneissa verkossa. Vaikka minulla ei juuri nyt ole useampaa, niin haluan kokeilla.
+
 
 
 
@@ -91,3 +113,5 @@ Postfix, "Postfix Basic Configuration" (https://www.postfix.org/BASIC_CONFIGURAT
 Linux Wiki, "/etc/hosts" (https://www.linux.fi/wiki//etc/hosts)
 
 Wiki Debian, "Postfix" (https://wiki.debian.org/Postfix)
+
+Salt Project, "salt.states.file" (https://docs.saltproject.io/en/latest/ref/states/all/salt.states.file.html)
