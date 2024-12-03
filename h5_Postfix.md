@@ -4,6 +4,12 @@
 Tarkoituksena oli luoda moduuli, jolla asennetaan ja alkukonfiguroidaan Postfix Saltilla.
 
 
+    $ echo "vastaanottajalle" | mail -s "Testipostia" minionreceiver@testiposti.org
+    $ cd ~/Maildir/new
+    $ ls -la
+
+![image](https://github.com/user-attachments/assets/9903ebf8-99f5-46ba-ab77-8c3061d58269)
+
 
 ## Alku, eli Saltin asennus
 
