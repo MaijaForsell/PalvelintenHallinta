@@ -21,7 +21,8 @@ Kopioin main.cf-tiedoston ja loin uuden kansion ja sinne uuden tiedoston, jota k
 
 Tässä mainfile sisältö:
 
-![image](https://github.com/user-attachments/assets/66ec2153-26a4-480d-88be-8958173a604f)
+![image](https://github.com/user-attachments/assets/2f0ed8bd-cc3c-4acb-bade-76de2e58e53b)
+
 
 
 
@@ -29,13 +30,24 @@ Kopioin mainfile-tiedoston sisällön master-koneen main.cf-fileen.
 
                                 $ sudoedit /etc/postfix/main.cf
 
+
+
 Mitä olen muuttanut?
 
 Poistin kommentoidut osat.
 
+Lisäsin postilaatikon "/Maildir"
+
 mynetworks: Lisäsin käyttämäni IP-verkon, jossa useamman koneen voisi olla mahdollista kommunikoida, jos haluan työstää mahdollisuutta koneiden väliseen kommunikointiin.
 
 myorigin: Korvasin siihen $mydomain, samasta syystä kuin mynetworks.
+
+Testasin luomalla käyttäjän ja lähettämällä postia.
+
+                                $ 
+
+
+
 
 ### Asennus minionille, eli infraa koodina
 
@@ -53,7 +65,7 @@ Sitten ryhdyin rakentamaan init.sls-tiedostoa asennusta varten.
                                 $ sudoedit init.sls
 
                                 
-
+                              
 
 
 
