@@ -37,7 +37,9 @@ mynetworks: Lisäsin käyttämäni IP-verkon, jossa useamman koneen voisi olla m
 
 myorigin: Korvasin siihen $mydomain, samasta syystä kuin mynetworks.
 
+### Jinja template
 
+Sain idean luoda jinja template, kun hain tietoa miten voisin tehdä sellaisen main.cf-filen, jota voisin käyttää kaikissa minioneissa verkossa. Vaikka minulla ei juuri nyt ole useampaa, niin haluan kokeilla.
 
 
 
