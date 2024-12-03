@@ -146,14 +146,57 @@ Annoin komennon suorittaa salt-state
 
          $ sudo salt '*' state.apply postfix_install
 
+Ensimmäisellä kerralla sain vain tekstiä, joka pysähtyi. 
+
+
+![image](https://github.com/user-attachments/assets/2403b247-2668-4a99-8c3c-c0555ab3287c)
+
+
+Painoin C^ ja käynnistin masterin uudestaan. Sitten sain oikean, oletettavan vastauksen.
+
 
 ![image](https://github.com/user-attachments/assets/7e92e73c-bd75-4d34-bd30-27b64c2ff7cc)
 
+Uudestaan ja kaikki samanlaista. On siis idempotentti.
+
+
+![image](https://github.com/user-attachments/assets/908e599f-76a0-435e-b64d-5358a9e0df45)
 
 
 
+### Testaus minionissa
+
+Postfix oli asennettu.
 
 
+![image](https://github.com/user-attachments/assets/e3d97b3d-8285-4d99-b11b-58cef98bd315)
+
+Kokeilin lähettää postia.
+
+        $ echo "vastaanottajalle" | mail -s "Testipostia" minionreceiver@testiposti.org
+
+Sain kuitenkin vastaukseksi "-bash: mail: command not found". Olin kokonaan unohtanut mailutils. Eli lisäsin sen init.sls -fileen.
+
+Tässä päivitetty:
+
+![image](https://github.com/user-attachments/assets/2696e1e9-d2ab-435b-aa42-bf2eaeb4f9a0)
+
+
+         $ sudo salt '*' state.apply postfix_install
+
+
+Kaikki meni niinkuin piti.
+
+![image](https://github.com/user-attachments/assets/bcf9683e-13df-4e92-9f34-c06f5fd32bfa)
+
+Menin kone2 uudestaan.
+
+        $ echo "vastaanottajalle" | mail -s "Testipostia" minionreceiver@testiposti.org
+        $ cd ~/Maildir/new
+        $ ls -la
+        
+Kaikki hyvin!!
+![image](https://github.com/user-attachments/assets/41beddcf-5f9f-4c6d-8cfe-d0054af96f08)
 
 ### Jinja template
 
