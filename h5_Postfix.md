@@ -87,7 +87,7 @@ Halusin testata, jos posti toimisi tämän koneen sisällä. Eli onko main.cf ke
 
 Asensin mailutils
 
-        $sudo apt-get install mailutils
+        $ sudo apt-get install mailutils
 
 Loin uuden käyttäjän nimeltään "receiver"
 
@@ -95,7 +95,27 @@ Loin uuden käyttäjän nimeltään "receiver"
         $ sudo passwd receiver
 
 
+Lähetin postia käyttäjälle.
 
+        $ echo "vastaanottajalle" | mail -s "Testipostia" receiver@testiposti.org
+
+Kirjauduin käyttäjälle. Kävin katsomassa jos postia olisi tullut.
+
+        $ su receiver
+        $ cd ~/Maildir/new
+        $ ls -la
+
+![image](https://github.com/user-attachments/assets/c58d3c8a-6cdc-4ea2-847e-7ec99d37095b)
+
+
+Kopioin saamani postin "nimen"
+
+        $ cat *nimi*
+
+![image](https://github.com/user-attachments/assets/27e9bd8a-6416-422d-abc3-a06607cc4184)
+
+
+Eli toimii paikallisesti.
 
 
 
