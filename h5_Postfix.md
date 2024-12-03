@@ -1,9 +1,41 @@
 # Postfix-moduuli
 
-Tarkoituksena oli luoda moduuli, jolla asennetaan ja konfiguroidaan Postfix Saltilla.
+Tarkoituksena oli luoda moduuli, jolla asennetaan ja alkukonfiguroidaan Postfix Saltilla.
 
 
 ### Postfix asennus
+Asensin ensin mailutils master-koneeseen. Sen jälkeen asensin Postfixin käsin.
+
+                                $ sudo apt install postfix
+
+Valitsin "internet" muodokseni. Sitten valitsin System mail name "testiposti.org"
+
+![image](https://github.com/user-attachments/assets/4a51e24e-32e3-41c0-9578-cf16f7db995a)
+
+
+Kopioin main.cf-tiedoston ja loin uuden kansion ja sinne uuden tiedoston, jota käyttää mallina.
+
+                                $ sudo mkdir -p /srv/salt/postfix_main/
+                                $ cd /srv/salt/postfix_main/
+                                $ sudoedit mainfile
+
+Tässä mainfile sisältö:
+
+![image](https://github.com/user-attachments/assets/66ec2153-26a4-480d-88be-8958173a604f)
+
+
+
+Kopioin mainfile-tiedoston sisällön master-koneen main.cf-fileen.
+
+                                $ sudoedit /etc/postfix/main.cf
+
+Mitä olen muuttanut?
+
+Poistin kommentoidut osat.
+
+mynetworks: Lisäsin käyttämäni IP-verkon, jossa useamman koneen voisi olla mahdollista kommunikoida, jos haluan työstää mahdollisuutta koneiden väliseen kommunikointiin.
+
+myorigin: Korvasin siihen $mydomain, samasta syystä kuin mynetworks.
 
 
 
