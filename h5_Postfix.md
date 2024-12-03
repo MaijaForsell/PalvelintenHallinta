@@ -4,15 +4,49 @@ Tarkoituksena oli luoda moduuli, jolla asennetaan ja alkukonfiguroidaan Postfix 
 
 
 
-Asensin ensin mailutils master-koneeseen. Sen jälkeen asensin Postfixin käsin.
+### Alku, eli Saltin asennus
 
-                                $ sudo apt install postfix
+Käytin valmista Vagrantfileä lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin hostnamet ja Debian Bullseye:n sijaan käytin Debian Bookworm:ia. Salt-masterin asensin kone1 ja Salt-minionin kone2.
 
-Valitsin "internet" muodokseni. Sitten valitsin System mail name "testiposti.org"
+Kone1:
+                                    $ vagrant ssh t001
+                                    $ sudo apt install curl
+                                    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+                                    $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+                                    $ sudo apt-get update
+                                    $ sudo apt-get -y install salt-master
 
 
-                                
-                              
+
+Kone2:
+
+                                    $ vagrant ssh t002
+                                    $ sudo apt install curl
+                                    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+                                    $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+                                    $ sudo apt-get update
+                                    $ sudo apt-get install salt-minion
+
+
+Muokkasin minion-tiedostoa, jossa lisäsin masterin (kone1) IP-osoitteen ja ID:n
+
+                                    $ sudoedit /etc/salt/minion
+                                    $ sudo systemctl restart salt-minion.service
+
+Kone1:
+
+Hyväksyin kone2 avaimen.
+
+![image](https://github.com/user-attachments/assets/05973cc8-e300-4265-81a6-f57f0760b1de)
+
+Testasin yhteyttä. Se toimi.
+
+![image](https://github.com/user-attachments/assets/d92dba1a-625c-4458-aa07-0d62f1847a29)
+
+
+
+
+
 
 
 
