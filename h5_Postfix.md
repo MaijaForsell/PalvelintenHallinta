@@ -136,8 +136,9 @@ Lisäsin minionmain-tiedostoon kone1 main.cf-tiedoston tiedot, mutta muokkasin s
          $ sudo mkdir /srv/salt/postfix_install
          $ sudoedit init.sls
 
+init.sls sisältö:
 
-![image](https://github.com/user-attachments/assets/7e92e73c-bd75-4d34-bd30-27b64c2ff7cc)
+![image](https://github.com/user-attachments/assets/99a3bf7b-1c06-46ac-aa69-76daac83dda9)
 
 
 Annoin komennon suorittaa salt-state
@@ -146,11 +147,11 @@ Annoin komennon suorittaa salt-state
          $ sudo salt '*' state.apply postfix_install
 
 
+![image](https://github.com/user-attachments/assets/7e92e73c-bd75-4d34-bd30-27b64c2ff7cc)
 
 
 
 
-![image](https://github.com/user-attachments/assets/99a3bf7b-1c06-46ac-aa69-76daac83dda9)
 
 
 
