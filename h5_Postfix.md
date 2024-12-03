@@ -1,37 +1,39 @@
 
+# Postfix
 
 Tarkoituksena oli luoda moduuli, jolla asennetaan ja alkukonfiguroidaan Postfix Saltilla.
 
 
 
-### Alku, eli Saltin asennus
+## Alku, eli Saltin asennus
 
 Käytin valmista Vagrantfileä lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant", mutta muutin hostnamet ja Debian Bullseye:n sijaan käytin Debian Bookworm:ia. Salt-masterin asensin kone1 ja Salt-minionin kone2.
 
 Kone1:
-                                    $ vagrant ssh t001
-                                    $ sudo apt install curl
-                                    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
-                                    $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
-                                    $ sudo apt-get update
-                                    $ sudo apt-get -y install salt-master
+          
+          $ vagrant ssh t001
+          $ sudo apt install curl
+          $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+          $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+          $ sudo apt-get update
+          $ sudo apt-get -y install salt-master
 
 
 
 Kone2:
 
-                                    $ vagrant ssh t002
-                                    $ sudo apt install curl
-                                    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
-                                    $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
-                                    $ sudo apt-get update
-                                    $ sudo apt-get install salt-minion
+        $ vagrant ssh t002
+        $ sudo apt install curl
+        $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+        $ echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+        $ sudo apt-get update
+        $ sudo apt-get install salt-minion
 
 
 Muokkasin minion-tiedostoa, jossa lisäsin masterin (kone1) IP-osoitteen ja ID:n
 
-                                    $ sudoedit /etc/salt/minion
-                                    $ sudo systemctl restart salt-minion.service
+        $ sudoedit /etc/salt/minion
+        $ sudo systemctl restart salt-minion.service
 
 Kone1:
 
@@ -44,6 +46,53 @@ Testasin yhteyttä. Se toimi.
 ![image](https://github.com/user-attachments/assets/d92dba1a-625c-4458-aa07-0d62f1847a29)
 
 
+## Postfix asennus salt-masterille
+
+Käytin ohjeenani lähdettä Reintech, 2024 "Configuring Mail Server with Postfix on Debian 12".
+
+Asensin Postfixin.
+
+        $ sudo apt install postfix
+
+Valitsin System Mail Nameksi "testiposti.org"
+
+Muokkasin main.cf-tiedostoa. Eli muokkasin asennusta mieluisekseni.
+
+        $ sudoedit /etc/postfix/main.cf
+
+
+![image](https://github.com/user-attachments/assets/442d1753-8ba1-48c5-aabf-7217fa03c69b)
+
+Mitä muutin?
+
+Lisäsin postilaatikon "/Maildir"
+
+Muutin "myhostname"-kohdan oletuksesta "kone1" nimeen "kone1.testiposti.org"
+
+Muutin "myorigin"-kohtaan "$mydomain"
+
+Lisäsin "mynetworks"-kohtaan "192.168.88.0/24"
+
+Muutoksissa otin huomioon, että saatan haluta laajentaa projektia siten, että voisin kommunikoida koneesta toiseen tulevaisuudessa. Tähän kohtaan sitä onnistunut tekemään. ks. "sahkoposti.md" tässä Github-kansiossa.
+
+Muutosten jälkeen käynnistin uudestaan Postfixin.
+
+        
+        $ sudo systemctl restart postfix
+
+Halusin testata, jos posti toimisi tämän koneen sisällä. Eli onko main.cf kelpo lähetettäväksi myös minioneille?
+
+
+### Testaus Masterissa
+
+Asensin mailutils
+
+        $sudo apt-get install mailutils
+
+Loin uuden käyttäjän nimeltään "receiver"
+
+        $ sudo useradd -m -s /bin/bash receiver
+        $ sudo passwd receiver
 
 
 
@@ -101,7 +150,7 @@ Työkaluina VirtualBox ja Vagrant
 Käyttämäni Vagrantfile on otettu lähteestä Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant"
 
 
-## Lähteet
+# Lähteet
 
 Karvinen, 2021, "Two Machine Virtual Network With Debian 11 Bullseye and Vagrant" (https://terokarvinen.com/2021/two-machine-virtual-network-with-debian-11-bullseye-and-vagrant/)
 
