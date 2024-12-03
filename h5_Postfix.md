@@ -119,6 +119,24 @@ Eli toimii paikallisesti.
 
 
 
+## Minionin main.cf ja moduulin .sls
+
+Loin uuden kansion ja sinne minionmain-tiedoston
+
+         $ sudo mkdir /srv/salt/postfix
+         $ cd /srv/salt/postfix
+         $ sudoedit minionmain
+
+Lisäsin minionmain-tiedostoon kone1 main.cf-tiedoston tiedot, mutta muokkasin sieltä maininnat kone1:stä ja korvasin kone2:lla.
+
+![image](https://github.com/user-attachments/assets/4a9e454e-5272-40b9-b7be-9fc324f69164)
+
+### Init.sls, eli infraa koodina
+
+
+
+
+
 
 ### Jinja template
 
