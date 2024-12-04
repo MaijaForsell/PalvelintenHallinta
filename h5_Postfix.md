@@ -206,7 +206,18 @@ Kaikki hyvin!!
 
 ### Jinja template
 
-Sain idean luoda jinja template, kun hain tietoa miten voisin tehdä sellaisen main.cf-filen, jota voisin käyttää kaikissa minioneissa verkossa. Vaikka minulla ei juuri nyt ole useampaa, niin haluan kokeilla.
+Sain idean luoda jinja template, kun hain tietoa miten voisin tehdä sellaisen main.cf-filen, jota voisin käyttää kaikissa minioneissa verkossa. Vaikka minulla ei juuri nyt ollut useampaa, niin halusin ainakin kokeilla. Oli kuitenkin hankalaa löytää luotettavaa ja minulle hyödyllistä tietoa.
+
+Yksi hyödyllisimmistä oli lähde Salt Project, "Using Jinja with Salt", jonka löysin Reddit-keskustelusta "How to lower case return of fqdn grain ?"-otsikon alta. 
+
+Loin uuden kansion "/srv/salt/jinja_postfix", jonne loin init.sls-tiedoston. Se on muuten sama kuin postfix_install, mutta otin siihen jinja template. 
+
+![image](https://github.com/user-attachments/assets/bc65b208-200a-458d-8bb1-0bc45c6948dc)
+
+Tein uuden minionmain-kopion ja tein siitä jinja-templaten. Muokkasin sinne muuttujat.
+
+![image](https://github.com/user-attachments/assets/b3821aa1-e537-478b-bbda-ae4cc7e4920a)
+
 
 
 
@@ -215,7 +226,7 @@ Sain idean luoda jinja template, kun hain tietoa miten voisin tehdä sellaisen m
 
 ### Harha-askel
 
-Päätin tässä vaiheessa käyttää vanhaa master-minion -paria joka minulla on, koska en saanut uutta konetta yhdistettyä. Sen pohjana oli sama vagrantfile, jota käytin uusiin koneisiin. Poistin koneilta postfixin.
+Päätin aluksi tässä vaiheessa käyttää vanhaa master-minion -paria joka minulla on, koska en saanut uutta konetta yhdistettyä. Sen pohjana oli sama vagrantfile, jota käytin uusiin koneisiin. Poistin koneilta postfixin.
 
         $ apt-get purge postfix
 
@@ -269,3 +280,7 @@ Linux Wiki, "/etc/hosts" (https://www.linux.fi/wiki//etc/hosts)
 Wiki Debian, "Postfix" (https://wiki.debian.org/Postfix)
 
 Salt Project, "salt.states.file" (https://docs.saltproject.io/en/latest/ref/states/all/salt.states.file.html)
+
+Salt Project, "Using Jinja with Salt" (https://docs.saltproject.io/salt/user-guide/en/latest/topics/jinja.html)
+
+Reddit, "How to lower case return of fqdn grain ?" (https://www.reddit.com/r/saltstack/comments/1axj3wa/how_to_lower_case_return_of_fqdn_grain/)
