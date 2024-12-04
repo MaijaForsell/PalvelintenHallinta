@@ -218,6 +218,13 @@ Tein uuden minionmain-kopion ja tein siitä jinja-templaten. Muokkasin sinne muu
 
 ![image](https://github.com/user-attachments/assets/b3821aa1-e537-478b-bbda-ae4cc7e4920a)
 
+        $ sudo salt '*' state.apply jinja_postfix
+
+Se toimi. Kuitenkin "id" lienee väärä muuttuja, sillä olin antanut minionille itselleen minionin konfiguroinnissa id:n. On hyvä tietää, että tämäkin toimi. 
+
+![image](https://github.com/user-attachments/assets/6b60b8b2-d477-43c7-9803-15abb1152a1f)
+
+
 
 
 
